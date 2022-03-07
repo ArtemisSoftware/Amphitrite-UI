@@ -22,22 +22,18 @@ fun ScratchCard() {
     val currentPathState = remember { mutableStateOf(DraggedPath(path = Path())) }
     val movedOffsetState = remember { mutableStateOf<Offset?>(null) }
 
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-    ) {
-        ScratchCanvas(
-            overlayImage = R.drawable.prize_overlay,
-            baseImage = R.drawable.artemis_4,
-            movedOffset = movedOffsetState.value,
-            onMovedOffset = { x, y ->
-                movedOffsetState.value = Offset(x, y)
-            },
-            currentPath = currentPathState.value.path,
-            currentPathThickness = currentPathState.value.width,
-            modifier = Modifier.align(Alignment.Center)
-        )
-    }
+
+    ScratchCanvas(
+        overlayImage = R.drawable.prize_overlay,
+        baseImage = R.drawable.artemis_4,
+        movedOffset = movedOffsetState.value,
+        onMovedOffset = { x, y ->
+            movedOffsetState.value = Offset(x, y)
+        },
+        currentPath = currentPathState.value.path,
+        currentPathThickness = currentPathState.value.width
+    )
+
 }
 
 @ExperimentalComposeUiApi

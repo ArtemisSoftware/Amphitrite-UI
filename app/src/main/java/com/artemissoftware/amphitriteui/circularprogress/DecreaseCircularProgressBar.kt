@@ -20,10 +20,13 @@ import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.artemissoftware.amphitriteui.Greeting
+import com.artemissoftware.amphitriteui.ui.theme.AmphitriteUITheme
 import com.artemissoftware.amphitriteui.ui.theme.Purple500
 
 @Composable
@@ -45,9 +48,7 @@ fun DecreaseCircularProgressBar(
         )
     )
 
-    LaunchedEffect(
-        key1 = true
-    ) {
+    LaunchedEffect(key1 = true) {
         animationPlayed.value = true
     }
 
@@ -92,4 +93,13 @@ fun DecreaseCircularProgressBar(
     }
 }
 
+
+
+@Preview(showBackground = true)
+@Composable
+private fun DefaultPreview() {
+    DecreaseCircularProgressBar(
+        percentage = 50f
+    )
+}
 

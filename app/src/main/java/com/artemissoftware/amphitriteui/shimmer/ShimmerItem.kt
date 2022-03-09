@@ -13,6 +13,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.artemissoftware.amphitriteui.Greeting
 import com.artemissoftware.amphitriteui.ui.theme.AmphitriteUITheme
+import com.artemissoftware.amphitriteui.ui.theme.Purple500
 
 
 @Composable
@@ -21,7 +22,7 @@ fun ShimmerItem(brush: Brush) {
         modifier = Modifier.padding(5.dp)
     ) {
         Row(
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier.fillMaxWidth(),
         ) {
             Spacer(
                 modifier = Modifier
@@ -43,7 +44,7 @@ fun ShimmerItem(brush: Brush) {
                             .weight(1.0f)
                             .background(brush)
                     )
-                    Divider(modifier = Modifier.weight(0.1f))
+                    Spacer(modifier = Modifier.weight(0.1f))
                     Text(
                         text = "",
                         modifier = Modifier
@@ -78,9 +79,16 @@ private fun DefaultPreview() {
 
     val brush = Brush.linearGradient(
         colors = ShimmerColors,
-        //start = Offset(10f, 10f),
+        start = Offset(10f, 10f),
         //end = Offset(translateAnim.value, translateAnim.value)
     )
 
-    ShimmerItem(brush)
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(Purple500)
+    ) {
+        ShimmerItem(brush)
+    }
+
 }

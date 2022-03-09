@@ -19,6 +19,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.artemissoftware.amphitriteui.circularprogress.CircularProgressBarScreen
 import com.artemissoftware.amphitriteui.scratchcard.ScratchCard
+import com.artemissoftware.amphitriteui.shimmer.ShimmerAnimate
+import com.artemissoftware.amphitriteui.shimmer.ShimmerAnimateItem
 import com.artemissoftware.amphitriteui.swipebutton.SwipeButton
 import com.artemissoftware.amphitriteui.ui.theme.AmphitriteUITheme
 
@@ -32,13 +34,14 @@ class MainActivity : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
 
+                    //ShimmerAnimate()
+                    //CircularProgressBarScreen()
 
-                    CircularProgressBarScreen()
-
-//                    SingleContent{
-//                        //ScratchCard()
-//                        //SwipeButton()
-//                    }
+                    SingleContent{
+                        ShimmerAnimateItem()
+                        //ScratchCard()
+                        //SwipeButton()
+                    }
 
 
                 }

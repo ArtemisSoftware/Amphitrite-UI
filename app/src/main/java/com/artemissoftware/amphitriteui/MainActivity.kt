@@ -6,7 +6,6 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -16,12 +15,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import com.artemissoftware.amphitriteui.circularprogress.CircularProgressBarScreen
-import com.artemissoftware.amphitriteui.scratchcard.ScratchCard
-import com.artemissoftware.amphitriteui.shimmer.ShimmerAnimate
 import com.artemissoftware.amphitriteui.shimmer.ShimmerAnimateItem
-import com.artemissoftware.amphitriteui.swipebutton.SwipeButton
+import com.artemissoftware.amphitriteui.shimmer.ShimmerAnimateScreen
 import com.artemissoftware.amphitriteui.ui.theme.AmphitriteUITheme
 
 class MainActivity : ComponentActivity() {
@@ -34,11 +29,10 @@ class MainActivity : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
 
-                    //ShimmerAnimate()
+                    ShimmerAnimateScreen()
                     //CircularProgressBarScreen()
 
                     SingleContent{
-                        ShimmerAnimateItem()
                         //ScratchCard()
                         //SwipeButton()
                     }

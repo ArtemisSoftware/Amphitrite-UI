@@ -71,23 +71,19 @@ fun ShimmerItem(brush: Brush) {
 @Composable
 private fun DefaultPreview() {
 
-    val ShimmerColors = listOf(
+    val shimmerColors = listOf(
         Color.LightGray.copy(0.9f),
         Color.LightGray.copy(0.2f),
         Color.LightGray.copy(0.9f)
     )
 
     val brush = Brush.linearGradient(
-        colors = ShimmerColors,
+        colors = shimmerColors,
         start = Offset(10f, 10f),
         //end = Offset(translateAnim.value, translateAnim.value)
     )
 
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .background(Purple500)
-    ) {
+    Column {
         ShimmerItem(brush)
     }
 

@@ -70,4 +70,7 @@ dependencies {
 
     implementation "androidx.compose.runtime:runtime-livedata:$compose_version"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.3.1"
+
+    //ExoPlayer
+    implementation 'com.google.android.exoplayer:exoplayer:2.11.7'
 }

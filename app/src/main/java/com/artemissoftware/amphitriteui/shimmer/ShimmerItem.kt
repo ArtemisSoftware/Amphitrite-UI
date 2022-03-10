@@ -14,6 +14,7 @@ import androidx.compose.ui.unit.dp
 import com.artemissoftware.amphitriteui.Greeting
 import com.artemissoftware.amphitriteui.ui.theme.AmphitriteUITheme
 import com.artemissoftware.amphitriteui.ui.theme.Purple500
+import com.artemissoftware.amphitriteui.util.Constants.SHIMMER_COLORS
 
 
 @Composable
@@ -71,14 +72,9 @@ fun ShimmerItem(brush: Brush) {
 @Composable
 private fun DefaultPreview() {
 
-    val shimmerColors = listOf(
-        Color.LightGray.copy(0.9f),
-        Color.LightGray.copy(0.2f),
-        Color.LightGray.copy(0.9f)
-    )
 
     val brush = Brush.linearGradient(
-        colors = shimmerColors,
+        colors = SHIMMER_COLORS,
         start = Offset(10f, 10f),
         //end = Offset(translateAnim.value, translateAnim.value)
     )

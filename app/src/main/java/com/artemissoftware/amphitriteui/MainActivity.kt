@@ -15,9 +15,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.artemissoftware.amphitriteui.player.ExoPlayer
 import com.artemissoftware.amphitriteui.shimmer.ShimmerAnimateItem
 import com.artemissoftware.amphitriteui.shimmer.ShimmerAnimateScreen
 import com.artemissoftware.amphitriteui.ui.theme.AmphitriteUITheme
+import com.artemissoftware.amphitriteui.util.Constants.VIDEO_URL
 
 class MainActivity : ComponentActivity() {
     @ExperimentalMaterialApi
@@ -33,6 +35,7 @@ class MainActivity : ComponentActivity() {
                     //CircularProgressBarScreen()
 
                     SingleContent{
+                        //ExoPlayer(url = VIDEO_URL)
                         //ScratchCard()
                         //SwipeButton()
                     }

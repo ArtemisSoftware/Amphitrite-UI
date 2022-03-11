@@ -14,6 +14,7 @@ import com.artemissoftware.amphitriteui.expandablelist.ItemExp
 @Composable
 fun CardArrow(
     degrees: Float,
+    color: Color = Color.Black,
     onClick: () -> Unit
 ) {
     IconButton(
@@ -23,7 +24,7 @@ fun CardArrow(
                 painter = painterResource(id = R.drawable.ic_exp_arrow),
                 contentDescription = "Expandable Arrow",
                 modifier = Modifier.rotate(degrees),
-                tint = Color.Black
+                tint = color
             )
         }
     )
@@ -33,5 +34,5 @@ fun CardArrow(
 @Composable
 private fun DefaultPreview() {
 
-    CardArrow(degrees = 34F, {})
+    CardArrow(degrees = 34F, onClick = {})
 }

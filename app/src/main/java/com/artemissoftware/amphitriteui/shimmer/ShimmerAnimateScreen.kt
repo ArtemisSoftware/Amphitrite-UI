@@ -1,8 +1,11 @@
 package com.artemissoftware.amphitriteui.shimmer
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.GridCells
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyVerticalGrid
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -15,21 +18,18 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.artemissoftware.amphitriteui.ui.theme.Purple500
+import com.artemissoftware.amphitriteui.util.Constants
 
+@ExperimentalFoundationApi
 @Composable
 fun ShimmerAnimateScreen() {
 
-    val shimmerColors = listOf(
-        Color.LightGray.copy(0.9f),
-        Color.LightGray.copy(0.2f),
-        Color.LightGray.copy(0.9f)
-    )
 
-    val brush = Brush.linearGradient(
-        colors = shimmerColors,
-        start = Offset(10f, 10f),
-        //end = Offset(translateAnim.value, translateAnim.value)
-    )
+//    val brush = Brush.linearGradient(
+//        colors = Constants.SHIMMER_COLORS,
+//        start = Offset(10f, 10f),
+//        //end = Offset(translateAnim.value, translateAnim.value)
+//    )
 
 
     Column(
@@ -54,32 +54,36 @@ fun ShimmerAnimateScreen() {
         }
 
         LazyColumn(
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier.fillMaxWidth()
         ) {
 
             repeat(3) {
                 item {
-                    ShimmerAnimateItem()
+                    ShimmerAnimateItem{
+                        ShimmerItem(brush = it)
+                    }
                 }
             }
+        }
+        
+        Spacer(modifier = Modifier.height(24.dp))
 
-            item{
-                Text(
-                    text = "No Shimmer Animate",
-                    color = Color.Black,
-                    fontSize = 20.sp,
-                    fontWeight = FontWeight.Bold
-                )
+        LazyVerticalGrid(
+            cells = GridCells.Fixed(2),
+            modifier = Modifier.padding(10.dp)
+        ) {
+            repeat(10) {
+                item {
+                    ShimmerAnimateItem{
+                        ShimmerGridItem(brush = it)
+                    }
+                }
             }
-
-            item {
-                ShimmerItem(brush)
-            }
-
         }
     }
 }
 
+@ExperimentalFoundationApi
 @Preview(showBackground = true)
 @Composable
 private fun DefaultPreview() {

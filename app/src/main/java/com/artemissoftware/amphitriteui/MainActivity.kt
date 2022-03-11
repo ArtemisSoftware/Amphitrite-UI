@@ -3,6 +3,7 @@ package com.artemissoftware.amphitriteui
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -22,6 +23,7 @@ import com.artemissoftware.amphitriteui.ui.theme.AmphitriteUITheme
 import com.artemissoftware.amphitriteui.util.Constants.VIDEO_URL
 
 class MainActivity : ComponentActivity() {
+    @ExperimentalFoundationApi
     @ExperimentalMaterialApi
     @ExperimentalComposeUiApi
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,11 +36,11 @@ class MainActivity : ComponentActivity() {
                     ShimmerAnimateScreen()
                     //CircularProgressBarScreen()
 
-                    SingleContent{
+                    //SingleContent{
                         //ExoPlayer(url = VIDEO_URL)
                         //ScratchCard()
                         //SwipeButton()
-                    }
+                    //}
 
 
                 }

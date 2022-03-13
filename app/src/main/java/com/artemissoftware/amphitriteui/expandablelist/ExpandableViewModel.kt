@@ -25,7 +25,7 @@ class ExpandableViewModel: ViewModel() {
             repeat(10) {
                 sampleList += ItemExp(
                     id = it + 1,
-                    title = "Make ${it + 1}"
+                    title = "Expandable card ${it + 1}"
                 )
             }
             _cards.emit(sampleList)

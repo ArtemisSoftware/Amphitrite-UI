@@ -17,11 +17,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.artemissoftware.amphitriteui.Greeting
 import com.artemissoftware.amphitriteui.expandablelist.ItemExp
-import com.artemissoftware.amphitriteui.ui.theme.AmphitriteUITheme
 import com.artemissoftware.amphitriteui.ui.theme.Purple500
-import com.artemissoftware.amphitriteui.util.Constants.ExpandAnimation
+import com.artemissoftware.amphitriteui.util.Constants.ExpandAnimationDuration
 
 @SuppressLint("UnusedTransitionTargetStateParameter")
 @ExperimentalAnimationApi
@@ -36,16 +34,16 @@ fun ExpandableCard(
     val transitionState = remember { MutableTransitionState(expanded).apply {
         targetState = !expanded
     }}
+
     val transition = updateTransition(targetState = transitionState, label = "transition")
 
 
     val cardBgColor by transition.animateColor(
         transitionSpec = {
-            tween(durationMillis = ExpandAnimation)
+            tween(durationMillis = ExpandAnimationDuration)
         },
         label = "bgColorTransition"
-    )
-    {
+    ){
         if (expanded) Purple500 else Purple500
     }
 //    val cardPaddingHorizontal by transition.animateDp({

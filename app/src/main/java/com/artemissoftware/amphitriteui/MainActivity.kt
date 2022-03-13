@@ -3,6 +3,7 @@ package com.artemissoftware.amphitriteui
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -16,6 +17,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.artemissoftware.amphitriteui.expandablelist.ItemExp
+import com.artemissoftware.amphitriteui.expandablelist.composables.ExpandableCard
 import com.artemissoftware.amphitriteui.player.ExoPlayer
 import com.artemissoftware.amphitriteui.shimmer.ShimmerAnimateItem
 import com.artemissoftware.amphitriteui.shimmer.ShimmerAnimateScreen
@@ -23,6 +26,7 @@ import com.artemissoftware.amphitriteui.ui.theme.AmphitriteUITheme
 import com.artemissoftware.amphitriteui.util.Constants.VIDEO_URL
 
 class MainActivity : ComponentActivity() {
+    @ExperimentalAnimationApi
     @ExperimentalFoundationApi
     @ExperimentalMaterialApi
     @ExperimentalComposeUiApi
@@ -33,14 +37,21 @@ class MainActivity : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
 
-                    ShimmerAnimateScreen()
+                    //ShimmerAnimateScreen()
                     //CircularProgressBarScreen()
 
-                    //SingleContent{
+                    val card = ItemExp(1, "Example card")
+
+                    SingleContent{
+                        ExpandableCard(
+                            card = card,
+                            onCardArrowClick = { /*viewModel.cardArrowClick(card.id)*/ },
+                            expanded = false/*expandedCard.value.contains(card.id)*/
+                        )
                         //ExoPlayer(url = VIDEO_URL)
                         //ScratchCard()
                         //SwipeButton()
-                    //}
+                    }
 
 
                 }

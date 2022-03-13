@@ -20,6 +20,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.artemissoftware.amphitriteui.expandablelist.ExpandableListScreen
 import com.artemissoftware.amphitriteui.expandablelist.ItemExp
 import com.artemissoftware.amphitriteui.expandablelist.composables.ExpandableCard
+import com.artemissoftware.amphitriteui.imagepicker.ImagePickerScreen
 import com.artemissoftware.amphitriteui.player.ExoPlayer
 import com.artemissoftware.amphitriteui.shimmer.ShimmerAnimateItem
 import com.artemissoftware.amphitriteui.shimmer.ShimmerAnimateScreen
@@ -40,7 +41,8 @@ class MainActivity : ComponentActivity() {
 
                     //ShimmerAnimateScreen()
                     //CircularProgressBarScreen()
-                    ExpandableListScreen()
+                    //ExpandableListScreen()
+                    ImagePickerScreen()
 
 //                    SingleContent{
 

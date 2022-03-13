@@ -17,6 +17,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.artemissoftware.amphitriteui.expandablelist.ExpandableListScreen
 import com.artemissoftware.amphitriteui.expandablelist.ItemExp
 import com.artemissoftware.amphitriteui.expandablelist.composables.ExpandableCard
 import com.artemissoftware.amphitriteui.player.ExoPlayer
@@ -39,19 +40,14 @@ class MainActivity : ComponentActivity() {
 
                     //ShimmerAnimateScreen()
                     //CircularProgressBarScreen()
+                    ExpandableListScreen()
 
-                    val card = ItemExp(1, "Example card")
+//                    SingleContent{
 
-                    SingleContent{
-                        ExpandableCard(
-                            card = card,
-                            onCardArrowClick = { /*viewModel.cardArrowClick(card.id)*/ },
-                            expanded = false/*expandedCard.value.contains(card.id)*/
-                        )
                         //ExoPlayer(url = VIDEO_URL)
                         //ScratchCard()
                         //SwipeButton()
-                    }
+//                    }
 
 
                 }

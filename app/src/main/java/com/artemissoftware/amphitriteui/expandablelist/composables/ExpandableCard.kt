@@ -3,10 +3,9 @@ package com.artemissoftware.amphitriteui.expandablelist.composables
 import android.annotation.SuppressLint
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.animateColor
-import androidx.compose.animation.core.MutableTransitionState
-import androidx.compose.animation.core.tween
-import androidx.compose.animation.core.updateTransition
+import androidx.compose.animation.core.*
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -27,7 +26,6 @@ import com.artemissoftware.amphitriteui.util.Constants.ExpandAnimationDuration
 fun ExpandableCard(
     card: ItemExp,
     expanded: Boolean,
-    arrowRotationDegree: Float = 180F,
     onCardArrowClick: () -> Unit
 ){
 
@@ -46,77 +44,69 @@ fun ExpandableCard(
     ){
         if (expanded) Purple500 else Purple500
     }
-//    val cardPaddingHorizontal by transition.animateDp({
-//        tween(durationMillis = ExpandAnimation)
-//    }, label = "paddingTransition") {
-//        20.dp
-//    }
-//    val cardElevation by transition.animateDp({
-//        tween(durationMillis = ExpandAnimation)
-//    }, label = "elevationTransition") {
-//        if (expanded) 20.dp else 5.dp
-//    }
-//    val cardRoundedCorners by transition.animateDp({
-//        tween(
-//            durationMillis = ExpandAnimation,
-//            easing = FastOutSlowInEasing
-//        )
-//    }, label = "cornersTransition") {
-//        15.dp
-//    }
-//    val arrowRotationDegree by transition.animateFloat({
-//        tween(durationMillis = ExpandAnimation)
-//    }, label = "rotationDegreeTransition") {
-//        if (expanded) 0f else 180f
-//    }
+
+    val cardElevation by transition.animateDp(
+        transitionSpec = {
+            tween(durationMillis = ExpandAnimationDuration)
+        },
+        label = "elevationTransition"
+    ) {
+        if (expanded) 20.dp else 5.dp
+    }
+
+    val arrowRotationDegree by transition.animateFloat(
+        transitionSpec = {
+            tween(durationMillis = ExpandAnimationDuration)
+        },
+        label = "rotationDegreeTransition"
+    ) {
+        if (expanded) 0f else 180f
+    }
+
+
+    val cardPaddingHorizontal by transition.animateDp(
+        transitionSpec = {
+            tween(durationMillis = ExpandAnimationDuration)
+        },
+        label = "paddingTransition"
+    ) {
+        20.dp
+    }
+
+
+
+    val cardRoundedCorners by transition.animateDp(
+        transitionSpec = {
+            tween(
+                durationMillis = ExpandAnimationDuration,
+                easing = FastOutSlowInEasing
+            )
+        },
+        label = "cornersTransition"
+    ) {
+        if (expanded) 24.dp else 16.dp
+    }
+
+
 
 
 
     Card(
         backgroundColor = cardBgColor,
-//        elevation = cardElevation,
-//        shape = RoundedCornerShape(cardRoundedCorners),
-//        modifier = Modifier
-//            .fillMaxWidth()
-//            .padding(
-//                horizontal = cardPaddingHorizontal,
-//                vertical = 8.dp
-//            )
+        elevation = cardElevation,
+        shape = RoundedCornerShape(cardRoundedCorners),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 24.dp, vertical = 8.dp)
     ) {
 
-        Column(
-//            modifier = Modifier
-//                .fillMaxWidth()
-        ) {
-            Box {
-                Row(
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-
-                    Column(
-                        modifier = Modifier.weight(0.85f)
-                    ) {
-                        Text(
-                            text = card.title,
-                            color = Color.White,
-                            textAlign = TextAlign.Start,
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(12.dp)
-                        )
-                    }
-
-                    Column(
-                        modifier = Modifier.weight(0.15f)
-                    ) {
-                        CardArrow(
-                            degrees = arrowRotationDegree,
-                            onClick = onCardArrowClick,
-                            color = Color.White
-                        )
-                    }
-                }
-            }
+        Column{
+            FixedContent(
+                card = card,
+                degrees = arrowRotationDegree,
+                onClick = onCardArrowClick,
+                color = Color.White
+            )
             ExpandableContent(expanded)
         }
 

@@ -13,8 +13,8 @@ object Constants {
     )
 
 
-    const val ExpandAnimationDuration = 300
-    const val CollapseAnimation = 300
-    const val FadeInAnimation = 300
-    const val FadeOutAnimation = 300
+    const val ExpandAnimationDuration = 3000//300
+    const val CollapseAnimationDuration = 3000
+    const val FadeInAnimationDuration = 3000//300
+    const val FadeOutAnimationDuration = 3000
 }

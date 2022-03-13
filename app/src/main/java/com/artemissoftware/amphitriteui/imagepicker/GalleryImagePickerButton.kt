@@ -28,7 +28,7 @@ fun GalleryImagePickerButton(imageUrl: MutableState<Uri?>) {
         }
     ) {
         Text(
-            text = "Click Image",
+            text = "Open gallery",
             color = Color.White,
             fontSize = 20.sp,
             fontWeight = FontWeight.Bold

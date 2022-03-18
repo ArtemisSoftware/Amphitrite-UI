@@ -26,8 +26,10 @@ import com.artemissoftware.amphitriteui.shimmer.ShimmerAnimateItem
 import com.artemissoftware.amphitriteui.shimmer.ShimmerAnimateScreen
 import com.artemissoftware.amphitriteui.ui.theme.AmphitriteUITheme
 import com.artemissoftware.amphitriteui.util.Constants.VIDEO_URL
+import com.google.accompanist.permissions.ExperimentalPermissionsApi
 
 class MainActivity : ComponentActivity() {
+    @ExperimentalPermissionsApi
     @ExperimentalAnimationApi
     @ExperimentalFoundationApi
     @ExperimentalMaterialApi

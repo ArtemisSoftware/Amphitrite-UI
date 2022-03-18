@@ -19,17 +19,22 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.LifecycleOwner
 import com.artemissoftware.amphitriteui.R
 import com.artemissoftware.amphitriteui.ui.theme.Purple500
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
+import java.util.concurrent.Executor
 
 @Composable
 fun CameraOptions(
+    modifier: Modifier,
     context: Context,
+    executor: Executor,
+    imageCapture: MutableState<ImageCapture?>,
+    cameraProvider: ProcessCameraProvider,
+    preview: MutableState<Preview?>,
     lifecycleOwner: LifecycleOwner,
     outputDirectory: File,
     onMediaCaptured: (Uri?) -> Unit
@@ -40,24 +45,26 @@ fun CameraOptions(
     var flashRes by remember { mutableStateOf(R.drawable.ic_outline_flashlight_on) }
 
 
-    val camera: Camera? = null
+    var camera: Camera? = null
+
     var cameraSelector: CameraSelector?
-    val cameraProviderFuture = remember { ProcessCameraProvider.getInstance(context) }
-    val cameraProvider = cameraProviderFuture.get()
-
-    val executor = ContextCompat.getMainExecutor(context)
-
-    var imageCapture by remember { mutableStateOf<ImageCapture?>(null) }
-
-    var preview by remember { mutableStateOf<Preview?>(null) }
 
 
-
+    LaunchedEffect(key1 = true){
+        cameraSelector = CameraSelector.Builder()
+            .requireLensFacing(lensFacing)
+            .build()
+        cameraProvider.unbindAll()
+        camera = cameraProvider.bindToLifecycle(
+            lifecycleOwner,
+            cameraSelector as CameraSelector
+        )
+    }
 
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .padding(15.dp)
             .clip(RoundedCornerShape(15.dp))
@@ -85,7 +92,7 @@ fun CameraOptions(
 
         Button(
             onClick = {
-                val imgCapture = imageCapture ?: return@Button
+                val imgCapture = imageCapture.value ?: return@Button
                 val photoFile = getPhotoFile(outputDirectory)
 
                 val outputOptions = ImageCapture.OutputFileOptions.Builder(photoFile).build()
@@ -118,18 +125,25 @@ fun CameraOptions(
         IconButton(
             onClick = {
 
-                lensFacing = if (lensFacing == CameraSelector.LENS_FACING_BACK) CameraSelector.LENS_FACING_FRONT
-                else CameraSelector.LENS_FACING_BACK
+                 if (lensFacing == CameraSelector.LENS_FACING_BACK) {
+                     lensFacing = CameraSelector.LENS_FACING_FRONT
+                    flashRes = R.drawable.ic_outline_flashlight_on
+                     flashEnabled = false
+                }
+                else {
+                     lensFacing = CameraSelector.LENS_FACING_BACK
+                 }
+
 
                 cameraSelector = CameraSelector.Builder()
                     .requireLensFacing(lensFacing)
                     .build()
                 cameraProvider.unbindAll()
-                cameraProvider.bindToLifecycle(
+                camera = cameraProvider.bindToLifecycle(
                     lifecycleOwner,
                     cameraSelector as CameraSelector,
-                    imageCapture,
-                    preview
+                    imageCapture.value,
+                    preview.value
                 )
             }
         ) {

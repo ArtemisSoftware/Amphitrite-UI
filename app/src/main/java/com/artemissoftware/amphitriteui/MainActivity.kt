@@ -21,6 +21,7 @@ import com.artemissoftware.amphitriteui.expandablelist.ExpandableListScreen
 import com.artemissoftware.amphitriteui.expandablelist.ItemExp
 import com.artemissoftware.amphitriteui.expandablelist.composables.ExpandableCard
 import com.artemissoftware.amphitriteui.imagepicker.ImagePickerScreen
+import com.artemissoftware.amphitriteui.imagepicker.Slec
 import com.artemissoftware.amphitriteui.player.ExoPlayer
 import com.artemissoftware.amphitriteui.shimmer.ShimmerAnimateItem
 import com.artemissoftware.amphitriteui.shimmer.ShimmerAnimateScreen
@@ -44,7 +45,7 @@ class MainActivity : ComponentActivity() {
                     //ShimmerAnimateScreen()
                     //CircularProgressBarScreen()
                     //ExpandableListScreen()
-                    ImagePickerScreen()
+                    Slec()
 
 //                    SingleContent{
 
@@ -58,6 +59,8 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
+
+
 }
 
 @Composable
@@ -87,3 +90,4 @@ fun DefaultPreview() {
         Greeting("Android")
     }
 }
+

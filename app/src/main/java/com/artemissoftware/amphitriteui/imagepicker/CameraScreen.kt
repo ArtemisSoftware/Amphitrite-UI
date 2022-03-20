@@ -19,7 +19,10 @@ import java.io.File
 
 
 @Composable
-fun CameraScreen(){
+fun CameraScreen(
+    imageUrl: MutableState<Uri?>,
+    functionSelector: MutableState<Int>
+){
 
     val context = LocalContext.current
     val lifecycleOwner = LocalLifecycleOwner.current
@@ -52,7 +55,8 @@ fun CameraScreen(){
 
     val onMediaCaptured = { uri: Uri? ->
 
-
+        functionSelector.value = 0
+        imageUrl.value = uri
 
     }
 
@@ -158,5 +162,5 @@ fun CameraScreen(){
 @androidx.compose.ui.tooling.preview.Preview(showBackground = true)
 @Composable
 private fun DefaultPreview() {
-    CameraScreen()
+    //CameraScreen()
 }

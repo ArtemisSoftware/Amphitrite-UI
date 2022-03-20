@@ -1,9 +1,5 @@
 package com.artemissoftware.amphitriteui.sound
 
-import androidx.compose.animation.core.FastOutLinearInEasing
-import androidx.compose.animation.core.RepeatMode
-import androidx.compose.animation.core.infiniteRepeatable
-import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -18,10 +14,6 @@ import com.artemissoftware.amphitriteui.sound.composables.Wave
 fun SoundScreen() {
 
 
-    val animationSpec = infiniteRepeatable<Float>(
-        animation = tween(4000, easing = FastOutLinearInEasing),
-        repeatMode = RepeatMode.Restart
-    )
 
 
 
@@ -38,7 +30,7 @@ fun SoundScreen() {
         
         Wave(
             modifier = Modifier.align(CenterHorizontally),
-            animationSpecification = animationSpec)
+        )
     }
 }
 

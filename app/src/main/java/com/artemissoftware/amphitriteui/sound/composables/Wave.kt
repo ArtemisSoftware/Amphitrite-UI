@@ -1,7 +1,6 @@
 package com.artemissoftware.amphitriteui.sound.composables
 
-import androidx.compose.animation.core.Animatable
-import androidx.compose.animation.core.InfiniteRepeatableSpec
+import androidx.compose.animation.core.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -24,8 +23,7 @@ import kotlinx.coroutines.delay
 
 @Composable
 fun Wave(
-    modifier: Modifier,
-    animationSpecification: InfiniteRepeatableSpec<Float>? = null
+    modifier: Modifier
 ){
 
     val waves = listOf(
@@ -35,20 +33,24 @@ fun Wave(
         remember { Animatable(0f) }
     )
 
-    animationSpecification?.let { animationSpec->
 
-        waves.forEachIndexed { index, animatableWave ->
-            LaunchedEffect(animatableWave) {
+    val animationSpec = infiniteRepeatable<Float>(
+        animation = tween(4000, easing = FastOutLinearInEasing),
+        repeatMode = RepeatMode.Restart
+    )
 
-                delay(index * 1000L)
+    waves.forEachIndexed { index, animatableWave ->
+        LaunchedEffect(animatableWave) {
 
-                animatableWave.animateTo(
-                    targetValue = 1f,
-                    animationSpec = animationSpec
-                )
-            }
+            delay(index * 1000L)
+
+            animatableWave.animateTo(
+                targetValue = 1f,
+                animationSpec = animationSpec
+            )
         }
     }
+
 
 
     val wavesDys = waves.map { it.value }

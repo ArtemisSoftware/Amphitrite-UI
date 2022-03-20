@@ -1,16 +1,19 @@
 package com.artemissoftware.amphitriteui.sound.composables
 
-import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.artemissoftware.amphitriteui.ui.theme.Teal200
+import kotlinx.coroutines.delay
 
 @Composable
 fun Dots(modifier: Modifier){
@@ -20,6 +23,28 @@ fun Dots(modifier: Modifier){
         remember { Animatable(0f) },
         remember { Animatable(0f) }
     )
+
+
+    dots.forEachIndexed { index, animatable ->
+        LaunchedEffect(animatable) {
+
+            delay(index * 100L)
+
+            animatable.animateTo(
+                targetValue = 1f,
+                animationSpec = infiniteRepeatable(
+                    animation = keyframes {
+                        durationMillis = 2000
+                        0.0f at 0 with LinearOutSlowInEasing
+                        1.0f at 200 with LinearOutSlowInEasing
+                        0.0f at 400 with LinearOutSlowInEasing
+                        0.0f at 2000
+                    },
+                    repeatMode = RepeatMode.Restart
+                )
+            )
+        }
+    }
 
     val dys = dots.map { it.value }
 
@@ -33,9 +58,9 @@ fun Dots(modifier: Modifier){
             Box(
                 modifier = Modifier
                     .size(25.dp)
-//                    .graphicsLayer {
-//                        translationY = -dy * travelDistance
-//                    }
+                    .graphicsLayer {
+                        translationY = -dy * travelDistance
+                    }
             ) {
                 Dot()
             }

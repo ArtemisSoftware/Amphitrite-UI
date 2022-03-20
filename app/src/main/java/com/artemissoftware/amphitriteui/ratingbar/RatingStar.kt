@@ -2,9 +2,7 @@ package com.artemissoftware.amphitriteui.ratingbar
 
 import androidx.annotation.FloatRange
 import androidx.compose.foundation.Canvas
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -14,7 +12,9 @@ import androidx.compose.ui.graphics.drawscope.Fill
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.LayoutDirection
+import androidx.compose.ui.unit.dp
 import com.artemissoftware.amphitriteui.extensions.addStar
 import com.artemissoftware.amphitriteui.ratingbar.models.FractionalRectangleShape
 import com.artemissoftware.amphitriteui.ratingbar.models.RatingBarStyle
@@ -27,24 +27,26 @@ private const val strokeWidth = 1f
 fun RatingStar(
     @FloatRange(from = 0.0, to = 1.0) fraction: Float,
     config: RatingStarConfig,
+    starSize: Dp = 100.dp,
     modifier: Modifier = Modifier,
 ) {
     val isRtl = LocalLayoutDirection.current == LayoutDirection.Rtl
 
     Box(modifier = modifier) {
-        FilledStar(fraction, config.activeColor, isRtl)
-        EmptyStar(fraction, config, isRtl)
+        FilledStar(fraction = fraction, starSize = starSize, config = config, isRtl = isRtl)
+        EmptyStar(fraction = fraction, starSize = starSize, config = config, isRtl = isRtl)
     }
 }
 
 @Composable
 private fun FilledStar(
     fraction: Float,
-    activeColor: Color,
+    starSize: Dp = 100.dp,
+    config: RatingStarConfig,
     isRtl: Boolean
 ) = Canvas(
     modifier = Modifier
-        .fillMaxSize()
+        .size(size = starSize)
         .clip(
             if (isRtl)
                 rtlFilledStarFractionalShape(fraction = fraction)
@@ -54,8 +56,8 @@ private fun FilledStar(
 ) {
     val path = Path().addStar(size)
 
-    drawPath(path, color = activeColor, style = Fill) // Filled Star
-    drawPath(path, color = activeColor, style = Stroke(width = strokeWidth)) // Border
+    drawPath(path, color = config.activeColor, style = Fill) // Filled Star
+    drawPath(path, color = config.activeColor, style = Stroke(width = strokeWidth)) // Border
 }
 
 
@@ -63,11 +65,12 @@ private fun FilledStar(
 @Composable
 private fun EmptyStar(
     fraction: Float,
+    starSize: Dp = 100.dp,
     config: RatingStarConfig,
     isRtl: Boolean
 ) = Canvas(
     modifier = Modifier
-        .fillMaxSize()
+        .size(size = starSize)
         .clip(
             if (isRtl)
                 rtlEmptyStarFractionalShape(fraction = fraction)
@@ -86,33 +89,30 @@ private fun EmptyStar(
 
 
 
-fun rtlEmptyStarFractionalShape(fraction: Float): FractionalRectangleShape {
+private fun rtlEmptyStarFractionalShape(fraction: Float): FractionalRectangleShape {
     return if (fraction == 1f || fraction == 0f)
         FractionalRectangleShape(fraction, 1f)
     else FractionalRectangleShape(0f, 1f - fraction)
 }
 
-fun rtlFilledStarFractionalShape(fraction: Float): FractionalRectangleShape {
+private fun rtlFilledStarFractionalShape(fraction: Float): FractionalRectangleShape {
     return if (fraction == 0f || fraction == 1f)
         FractionalRectangleShape(0f, fraction)
     else FractionalRectangleShape(1f - fraction, 1f)
 }
 
 
+@Preview(showBackground = true)
+@Composable
+private fun FilledStarPreview() {
+    FilledStar(fraction = 1F, config = RatingStarConfig, isRtl = true)
+
+}
 
 @Preview(showBackground = true)
 @Composable
-private fun StarsPreview() {
-
-    Column {
-
-
-        FilledStar(fraction = 1F, activeColor = RatingStarConfig.activeColor, isRtl = true)
-        FilledStar(fraction = 0.5F, activeColor = RatingStarConfig.activeColor, isRtl = false)
-        //EmptyStar(fraction = 1F, config = RatingStarConfig, isRtl = true)
-    }
-
-    //RatingBar()
+private fun EmptyStarPreview() {
+    EmptyStar(fraction = 0.5F, config = RatingStarConfig, isRtl = true)
 }
 
 @Preview(showBackground = true)
@@ -120,10 +120,10 @@ private fun StarsPreview() {
 private fun RatingStarPreview() {
 
     Column {
-
-
-        RatingStar(fraction = 0.5F, config = RatingStarConfig)
+        FilledStar(fraction = 1F, config = RatingStarConfig, isRtl = true)
+        EmptyStar(fraction = 0F, config = RatingStarConfig, isRtl = true)
+        RatingStar(fraction = 0.3F, config = RatingStarConfig)
     }
 
-    //RatingBar()
+
 }

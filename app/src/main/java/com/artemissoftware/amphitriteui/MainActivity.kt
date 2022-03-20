@@ -18,6 +18,7 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.artemissoftware.amphitriteui.imagepicker.CameraApp
+import com.artemissoftware.amphitriteui.ratingbar.RatingBar
 import com.artemissoftware.amphitriteui.ui.theme.AmphitriteUITheme
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 
@@ -37,14 +38,15 @@ class MainActivity : ComponentActivity() {
                     //ShimmerAnimateScreen()
                     //CircularProgressBarScreen()
                     //ExpandableListScreen()
-                    CameraApp()
+                    //CameraApp()
 
-//                    SingleContent{
+                    SingleContent{
 
                         //ExoPlayer(url = VIDEO_URL)
                         //ScratchCard()
                         //SwipeButton()
-//                    }
+                        RatingBar()
+                    }
 
 
                 }

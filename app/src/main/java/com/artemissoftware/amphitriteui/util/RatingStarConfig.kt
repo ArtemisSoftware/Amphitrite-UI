@@ -6,7 +6,9 @@ import androidx.compose.ui.unit.dp
 import com.artemissoftware.amphitriteui.ratingbar.models.RatingBarStyle
 import com.artemissoftware.amphitriteui.ratingbar.models.StepSize
 
-object RatingStarConfig {
+class RatingStarConfig {
+
+
 
     var size: Dp = 50.dp
         private set
@@ -33,4 +35,10 @@ object RatingStarConfig {
 
     fun style(value: RatingBarStyle): RatingStarConfig =
         apply { style = value }
+
+
+    companion object{
+
+        const val starStrokeWidth = 1f
+    }
 }

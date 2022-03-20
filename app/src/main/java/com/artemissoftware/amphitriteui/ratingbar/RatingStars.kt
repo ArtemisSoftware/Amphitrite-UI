@@ -14,8 +14,9 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.artemissoftware.amphitriteui.util.RatingStarConfig
 
-val StarRatingKey = SemanticsPropertyKey<Float>("StarRating")
-var SemanticsPropertyReceiver.starRating by StarRatingKey
+
+private val StarRatingKey = SemanticsPropertyKey<Float>("StarRating")
+private var SemanticsPropertyReceiver.starRating by StarRatingKey
 
 @Composable
 fun RatingStars(
@@ -64,8 +65,8 @@ fun RatingStars(
 
 @Preview(showBackground = true)
 @Composable
-private fun ComposeStarsPreview() {
+private fun RatingStarsPreview() {
 
-    RatingStars(value = 1.8F, config = RatingStarConfig)
+    RatingStars(value = 1.8F, config = RatingStarConfig())
 
 }

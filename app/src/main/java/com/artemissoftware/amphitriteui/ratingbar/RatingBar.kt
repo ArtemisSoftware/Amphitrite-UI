@@ -1,9 +1,11 @@
 package com.artemissoftware.amphitriteui.ratingbar
 
+import android.util.Log
 import android.view.MotionEvent
 import androidx.compose.foundation.gestures.detectHorizontalDragGestures
 import androidx.compose.foundation.layout.Row
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Size
@@ -16,17 +18,40 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.toSize
 import com.artemissoftware.amphitriteui.Greeting
+import com.artemissoftware.amphitriteui.ratingbar.models.RatingBarStyle
 import com.artemissoftware.amphitriteui.ui.theme.AmphitriteUITheme
 import com.artemissoftware.amphitriteui.util.RatingBarUtils
 import com.artemissoftware.amphitriteui.util.RatingBarUtils.stepSized
 import com.artemissoftware.amphitriteui.util.RatingStarConfig
 
+
 @ExperimentalComposeUiApi
 @Composable
-fun RatingBar(
+fun RatingBar(){
+
+    var rating: Float by rememberSaveable { mutableStateOf(2.5f) }
+
+    RatingBarContent(
+        value = rating,
+        onValueChange = {
+            rating = it
+        },
+        onRatingChanged = {
+            Log.d("Rating Value", "RatingBarView: $it")
+        },
+        config = RatingStarConfig()
+            .style(RatingBarStyle.HighLighted)
+    )
+
+}
+
+
+@ExperimentalComposeUiApi
+@Composable
+private fun RatingBarContent(
     value: Float,
     modifier: Modifier = Modifier,
-    config: RatingStarConfig = RatingStarConfig,
+    config: RatingStarConfig = RatingStarConfig(),
     onValueChange: (Float) -> Unit,
     onRatingChanged: (Float) -> Unit
 ) {
@@ -123,9 +148,5 @@ fun RatingBar(
 @Preview(showBackground = true)
 @Composable
 private fun RatingBarPreview() {
-    RatingBar(
-        value = 1F,
-        onValueChange = {},
-        onRatingChanged = {}
-    )
+    RatingBar()
 }

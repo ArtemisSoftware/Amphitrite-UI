@@ -21,8 +21,6 @@ import com.artemissoftware.amphitriteui.ratingbar.models.RatingBarStyle
 import com.artemissoftware.amphitriteui.util.RatingStarConfig
 
 
-private const val strokeWidth = 1f
-
 @Composable
 fun RatingStar(
     @FloatRange(from = 0.0, to = 1.0) fraction: Float,
@@ -57,7 +55,7 @@ private fun FilledStar(
     val path = Path().addStar(size)
 
     drawPath(path, color = config.activeColor, style = Fill) // Filled Star
-    drawPath(path, color = config.activeColor, style = Stroke(width = strokeWidth)) // Border
+    drawPath(path, color = config.activeColor, style = Stroke(width = RatingStarConfig.starStrokeWidth)) // Border
 }
 
 
@@ -82,7 +80,7 @@ private fun EmptyStar(
     if (config.style is RatingBarStyle.Normal)
         drawPath(path, color = config.inactiveColor, style = Fill)
     else
-        drawPath(path, color = Color.Gray, style = Stroke(width = strokeWidth))
+        drawPath(path, color = Color.Gray, style = Stroke(width = RatingStarConfig.starStrokeWidth))
 }
 
 
@@ -105,14 +103,14 @@ private fun rtlFilledStarFractionalShape(fraction: Float): FractionalRectangleSh
 @Preview(showBackground = true)
 @Composable
 private fun FilledStarPreview() {
-    FilledStar(fraction = 1F, config = RatingStarConfig, isRtl = true)
+    FilledStar(fraction = 1F, config = RatingStarConfig(), isRtl = true)
 
 }
 
 @Preview(showBackground = true)
 @Composable
 private fun EmptyStarPreview() {
-    EmptyStar(fraction = 0.5F, config = RatingStarConfig, isRtl = true)
+    EmptyStar(fraction = 0.5F, config = RatingStarConfig(), isRtl = true)
 }
 
 @Preview(showBackground = true)
@@ -120,9 +118,13 @@ private fun EmptyStarPreview() {
 private fun RatingStarPreview() {
 
     Column {
-        FilledStar(fraction = 1F, config = RatingStarConfig, isRtl = true)
-        EmptyStar(fraction = 0F, config = RatingStarConfig, isRtl = true)
-        RatingStar(fraction = 0.3F, config = RatingStarConfig)
+
+        val highLighted = RatingStarConfig().style(RatingBarStyle.HighLighted)
+
+        EmptyStar(fraction = 0F, config = highLighted, isRtl = true)
+        FilledStar(fraction = 1F, config = RatingStarConfig(), isRtl = true)
+        EmptyStar(fraction = 0F, config = RatingStarConfig(), isRtl = true)
+        RatingStar(fraction = 0.3F, config = RatingStarConfig())
     }
 
 

@@ -1,6 +1,7 @@
 package com.artemissoftware.amphitriteui.sound.composables
 
 import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.InfiniteRepeatableSpec
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -8,6 +9,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Icon
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -18,9 +20,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.artemissoftware.amphitriteui.R
 import com.artemissoftware.amphitriteui.ui.theme.Teal200
+import kotlinx.coroutines.delay
 
 @Composable
-fun Wave(modifier: Modifier){
+fun Wave(
+    modifier: Modifier,
+    animationSpecification: InfiniteRepeatableSpec<Float>? = null
+){
 
     val waves = listOf(
         remember { Animatable(0f) },
@@ -28,6 +34,22 @@ fun Wave(modifier: Modifier){
         remember { Animatable(0f) },
         remember { Animatable(0f) }
     )
+
+    animationSpecification?.let { animationSpec->
+
+        waves.forEachIndexed { index, animatableWave ->
+            LaunchedEffect(animatableWave) {
+
+                delay(index * 1000L)
+
+                animatableWave.animateTo(
+                    targetValue = 1f,
+                    animationSpec = animationSpec
+                )
+            }
+        }
+    }
+
 
     val wavesDys = waves.map { it.value }
 

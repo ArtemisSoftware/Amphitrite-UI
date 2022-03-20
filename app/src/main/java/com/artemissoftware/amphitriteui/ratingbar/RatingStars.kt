@@ -10,6 +10,7 @@ import androidx.compose.ui.semantics.SemanticsPropertyKey
 import androidx.compose.ui.semantics.SemanticsPropertyReceiver
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.artemissoftware.amphitriteui.util.RatingStarConfig
 
@@ -18,6 +19,7 @@ var SemanticsPropertyReceiver.starRating by StarRatingKey
 
 @Composable
 fun RatingStars(
+    starSize: Dp = 100.dp,
     value: Float,
     config: RatingStarConfig
 ){
@@ -45,6 +47,7 @@ fun RatingStars(
             if (config.hideInactiveStars && starRating == 0.0f)
                 break
             RatingStar(
+                starSize = starSize,
                 fraction = starRating,
                 config = config,
                 modifier = Modifier

@@ -45,7 +45,17 @@ class MainActivity : ComponentActivity() {
                         //ExoPlayer(url = VIDEO_URL)
                         //ScratchCard()
                         //SwipeButton()
-                        RatingBar()
+//                        RatingBar(
+//                            value = rating,
+//                            onValueChange = {
+//                                rating = it
+//                            },
+//                            onRatingChanged = {
+//                                Log.d("Rating Value", "RatingBarView: $it")
+//                            },
+//                            config = RatingBarConfig()
+//                                .style(RatingBarStyle.HighLighted)
+//                        )
                     }
 
 

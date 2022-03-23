@@ -17,6 +17,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.artemissoftware.amphitriteui.bottomsheet.BottomSheetScreen
 import com.artemissoftware.amphitriteui.imagepicker.CameraApp
 import com.artemissoftware.amphitriteui.ratingbar.RatingBar
 import com.artemissoftware.amphitriteui.sound.SoundScreen
@@ -40,7 +41,8 @@ class MainActivity : ComponentActivity() {
                     //CircularProgressBarScreen()
                     //ExpandableListScreen()
                     //CameraApp()
-                    SoundScreen()
+                    //SoundScreen()
+                    BottomSheetScreen()
 
 //                    SingleContent{
 //

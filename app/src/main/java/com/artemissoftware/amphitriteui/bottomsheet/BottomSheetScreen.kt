@@ -15,7 +15,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.artemissoftware.amphitriteui.bottomsheet.composables.RadioLogoSmall
+import com.artemissoftware.amphitriteui.bottomsheet.composables.*
+import com.artemissoftware.amphitriteui.bottomsheet.pages.RadioScreenLarge
 import com.artemissoftware.amphitriteui.ui.theme.Purple500
 import kotlinx.coroutines.launch
 
@@ -61,18 +62,18 @@ fun BottomSheetScreen() {
             }
         },
         sheetContent = {
-//            SheetContent {
-//                SheetExpanded {
-//                    RadioScreenLarge()
-//                }
-//                SheetCollapsed(
-//                    isCollapsed = scaffoldState.bottomSheetState.isCollapsed,
-//                    currentFraction = scaffoldState.currentFraction,
-//                    onSheetClick = sheetToggle
-//                ) {
-                    //RadioScreenSmall()
-//                }
-//            }
+            SheetContent {
+                SheetExpanded {
+                    RadioScreenLarge()
+                }
+                SheetCollapsed(
+                    isCollapsed = scaffoldState.bottomSheetState.isCollapsed,
+                    currentFraction = scaffoldState.currentFraction,
+                    onSheetClick = sheetToggle
+                ) {
+                    RadioScreenSmall()
+                }
+            }
         },
         sheetPeekHeight = 70.dp,
     ) {

@@ -53,7 +53,7 @@ fun NestedScrollScreen() {
                     }
                 }
             }
-/*
+
             item {
                 Text(
                     text = "Lists",
@@ -65,53 +65,9 @@ fun NestedScrollScreen() {
             }
 
             items(count = 10) {
-                Card(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(100.dp)
-                        .padding(10.dp, 5.dp, 10.dp, 5.dp)
-                        .clip(RoundedCornerShape(10.dp))
-                        .background(Color.White),
-                    elevation = 5.dp
-                ) {
-                    Column(
-                        modifier = Modifier.padding(10.dp)
-                    ) {
-                        Row(
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
-                            Image(
-                                painter = painterResource(id = R.drawable.cat),
-                                contentDescription = "Profile Image",
-                                contentScale = ContentScale.Crop,
-                                modifier = Modifier
-                                    .size(60.dp)
-                                    .clip(CircleShape)
-                            )
-
-                            Spacer(modifier = Modifier.padding(5.dp))
-
-                            Column {
-                                Text(
-                                    text = "Sample Test",
-                                    color = Color.Black,
-                                    fontSize = 16.sp,
-                                    fontWeight = FontWeight.Bold
-                                )
-
-                                Spacer(modifier = Modifier.padding(2.dp))
-
-                                Text(
-                                    text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-                                    color = Color.Gray,
-                                    fontSize = 12.sp
-                                )
-                            }
-                        }
-                    }
-                }
+                VerticalCard()
             }
-            */
+
         }
     }
 }
@@ -156,5 +112,55 @@ private fun HorizontalCard(){
     }
 }
 
+@Preview(showBackground = true)
+@Composable
+private fun VerticalCard(){
+
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(100.dp)
+            .padding(10.dp, 5.dp, 10.dp, 5.dp)
+            .clip(RoundedCornerShape(10.dp))
+            .background(Color.White),
+        elevation = 5.dp
+    ) {
+        Column(
+            modifier = Modifier.padding(10.dp)
+        ) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Image(
+                    painter = painterResource(id = R.drawable.artemis_4),
+                    contentDescription = "Profile Image",
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier
+                        .size(60.dp)
+                        .clip(CircleShape)
+                )
+
+                Spacer(modifier = Modifier.padding(5.dp))
+
+                Column {
+                    Text(
+                        text = "Sample Test",
+                        color = Color.Black,
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.Bold
+                    )
+
+                    Spacer(modifier = Modifier.padding(2.dp))
+
+                    Text(
+                        text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+                        color = Color.Gray,
+                        fontSize = 12.sp
+                    )
+                }
+            }
+        }
+    }
+}
 
 

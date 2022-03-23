@@ -19,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.artemissoftware.amphitriteui.bottomsheet.BottomSheetScreen
 import com.artemissoftware.amphitriteui.imagepicker.CameraApp
+import com.artemissoftware.amphitriteui.nestedscroll.NestedScrollScreen
 import com.artemissoftware.amphitriteui.ratingbar.RatingBar
 import com.artemissoftware.amphitriteui.sound.SoundScreen
 import com.artemissoftware.amphitriteui.ui.theme.AmphitriteUITheme
@@ -42,7 +43,8 @@ class MainActivity : ComponentActivity() {
                     //ExpandableListScreen()
                     //CameraApp()
                     //SoundScreen()
-                    BottomSheetScreen()
+                    //BottomSheetScreen()
+                    NestedScrollScreen()
 
 //                    SingleContent{
 //

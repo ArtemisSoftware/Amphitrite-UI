@@ -48,12 +48,11 @@ fun SheetCollapsed(
             .fillMaxWidth()
             .height(70.dp)
             .background(Purple500)
-//            .graphicsLayer(alpha = 1f - currentFraction)
-//            .noRippleClickable(
-//                onClick = onSheetClick,
-//                enabled = isCollapsed
-//            )
-        ,
+            .graphicsLayer(alpha = 1f - currentFraction)
+            .noRippleClickable(
+                onClick = onSheetClick,
+                enabled = isCollapsed
+            ),
         verticalAlignment = Alignment.CenterVertically
     ) {
         content()

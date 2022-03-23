@@ -25,11 +25,12 @@ import coil.compose.ImagePainter
 import coil.compose.rememberImagePainter
 import com.artemissoftware.amphitriteui.R
 import com.artemissoftware.amphitriteui.bottomsheet.composables.PlayerControls
+import com.artemissoftware.amphitriteui.bottomsheet.composables.RadioLogo
 import com.artemissoftware.amphitriteui.ui.theme.Purple500
 
 @Preview(showBackground = true)
 @Composable
-fun RadioScreenLarge() {
+fun RadioPageFull() {
     Surface {
         RadioPlayer(
             topSection = {
@@ -119,44 +120,3 @@ private fun TopSection() {
 }
 
 
-@Preview
-@Composable
-fun RadioLogo() {
-    val painter = rememberImagePainter(
-        data = R.drawable.ic_baseline_radio_24,
-        builder = {
-            crossfade(true)
-        },
-        onExecute = { _, _-> true }
-    )
-    Box(
-        contentAlignment = Alignment.Center,
-        modifier = Modifier
-            .size(250.dp)
-            .shadow(30.dp, CircleShape)
-            .background(
-                color = Color.LightGray,
-                shape = CircleShape
-            )
-            .border(10.dp, Purple500, CircleShape)
-    ) {
-        Image(
-            painter = painter,
-            contentDescription = "Radio",
-            modifier = Modifier
-                .size(150.dp)
-                .padding(15.dp)
-        )
-
-        when (painter.state) {
-            is ImagePainter.State.Error -> {
-                Icon(
-                    imageVector = Icons.Filled.Radio,
-                    contentDescription = "Radio",
-                    tint = Purple500,
-                    modifier = Modifier.size(70.dp)
-                )
-            }
-        }
-    }
-}

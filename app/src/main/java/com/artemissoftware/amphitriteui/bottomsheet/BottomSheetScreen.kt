@@ -1,8 +1,5 @@
 package com.artemissoftware.amphitriteui.bottomsheet
 
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -16,7 +13,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.artemissoftware.amphitriteui.bottomsheet.composables.*
-import com.artemissoftware.amphitriteui.bottomsheet.pages.RadioScreenLarge
+import com.artemissoftware.amphitriteui.bottomsheet.pages.RadioPageFull
 import com.artemissoftware.amphitriteui.ui.theme.Purple500
 import kotlinx.coroutines.launch
 
@@ -64,14 +61,14 @@ fun BottomSheetScreen() {
         sheetContent = {
             SheetContent {
                 SheetExpanded {
-                    RadioScreenLarge()
+                    RadioPageFull()
                 }
                 SheetCollapsed(
                     isCollapsed = scaffoldState.bottomSheetState.isCollapsed,
                     currentFraction = scaffoldState.currentFraction,
                     onSheetClick = sheetToggle
                 ) {
-                    RadioScreenSmall()
+                    RadioPageMini()
                 }
             }
         },

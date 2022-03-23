@@ -7,3 +7,5 @@ App to explore simple ui ideas
     -Star rating (with animation)
     -Expandable Card
     -Sound (with animation)
+    -BottomSheet
+    -NestedScroll

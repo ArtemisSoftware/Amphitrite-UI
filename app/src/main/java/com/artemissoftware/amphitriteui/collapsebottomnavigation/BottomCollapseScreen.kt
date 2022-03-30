@@ -9,6 +9,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import com.artemissoftware.amphitriteui.bottomsheet.BottomSheetScreen
 import com.artemissoftware.amphitriteui.collapsebottomnavigation.composables.CardCollapse
+import com.artemissoftware.amphitriteui.collapsebottomnavigation.composables.CollapseBottomBar
+import com.artemissoftware.amphitriteui.collapsebottomnavigation.models.BottomScreen
 import com.artemissoftware.amphitriteui.ui.theme.Purple500
 
 @Composable
@@ -33,15 +35,18 @@ fun BottomCollapseScreen() {
             )
         },
         bottomBar = {
-//            BottomAppBar(
-//                modifier = Modifier
+            BottomAppBar(
+                modifier = Modifier
 //                    .height(bottomBarHeight)
 //                    .offset {
 //                        IntOffset(x = 0, y = -bottomBarOffsetHeightPx.value.roundToInt())
 //                    }
-//            ) {
-//                AppBottomNavigation(navController, bottomNavigationItems)
-//            }
+            ) {
+                CollapseBottomBar(
+                    //navController,
+                    bottomNavigationItems = BottomScreen.getBottomNavigationItems()
+                )
+            }
         },
         content = { innerPadding ->
             LazyColumn(contentPadding = innerPadding) {

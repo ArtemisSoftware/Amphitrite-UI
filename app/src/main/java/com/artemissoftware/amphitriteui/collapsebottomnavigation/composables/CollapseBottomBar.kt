@@ -11,7 +11,6 @@ import com.artemissoftware.amphitriteui.collapsebottomnavigation.models.BottomSc
 
 @Composable
 fun CollapseBottomBar(
-//    navController: NavHostController,
     bottomNavigationItems: List<BottomScreen>
 ) {
     BottomNavigation {

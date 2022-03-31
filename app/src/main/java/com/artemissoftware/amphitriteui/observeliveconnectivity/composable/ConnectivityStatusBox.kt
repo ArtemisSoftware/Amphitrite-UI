@@ -30,6 +30,7 @@ fun ConnectivityStatusBox(
     } else {
         R.drawable.ic_connectivity_unavailable
     }
+
     Box(
         modifier = Modifier
             .background(backgroundColor)

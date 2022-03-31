@@ -10,3 +10,4 @@ App to explore simple ui ideas
     -BottomSheet
     -NestedScroll
     -BottomCollapse
+    -Observe live connectivity

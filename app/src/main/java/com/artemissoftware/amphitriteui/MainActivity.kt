@@ -21,6 +21,7 @@ import com.artemissoftware.amphitriteui.bottomsheet.BottomSheetScreen
 import com.artemissoftware.amphitriteui.collapsebottomnavigation.BottomCollapseScreen
 import com.artemissoftware.amphitriteui.imagepicker.CameraApp
 import com.artemissoftware.amphitriteui.nestedscroll.NestedScrollScreen
+import com.artemissoftware.amphitriteui.observeliveconnectivity.ConnectivityScreen
 import com.artemissoftware.amphitriteui.ratingbar.RatingBar
 import com.artemissoftware.amphitriteui.sound.SoundScreen
 import com.artemissoftware.amphitriteui.ui.theme.AmphitriteUITheme
@@ -46,7 +47,8 @@ class MainActivity : ComponentActivity() {
                     //SoundScreen()
                     //BottomSheetScreen()
                     //NestedScrollScreen()
-                    BottomCollapseScreen()
+                    //BottomCollapseScreen()
+                    ConnectivityScreen()
 
 //                    SingleContent{
 //

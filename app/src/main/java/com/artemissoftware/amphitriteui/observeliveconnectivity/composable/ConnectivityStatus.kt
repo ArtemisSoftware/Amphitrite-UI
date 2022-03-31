@@ -1,12 +1,11 @@
 package com.artemissoftware.amphitriteui.observeliveconnectivity.composable
 
-import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -16,11 +15,42 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.artemissoftware.amphitriteui.R
 import com.artemissoftware.amphitriteui.collapsebottomnavigation.BottomCollapseScreen
+import com.artemissoftware.amphitriteui.observeliveconnectivity.models.ConnectionState
 import com.artemissoftware.amphitriteui.ui.theme.green
 import com.artemissoftware.amphitriteui.ui.theme.red
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.delay
+
+@ExperimentalAnimationApi
+@ExperimentalCoroutinesApi
+@Composable
+fun ConnectivityStatus() {
+    val connection by ConnectivityState()
+    val isConnected = connection == ConnectionState.Available
+    var visibility by remember { mutableStateOf(false) }
+
+    AnimatedVisibility(
+        visible = visibility,
+        enter = expandVertically(),
+        exit = shrinkVertically()
+    ) {
+        ConnectivityStatusBox(isConnected = isConnected)
+    }
+
+    LaunchedEffect(isConnected) {
+        visibility = if (!isConnected) {
+            true
+        } else {
+            delay(2000)
+            false
+        }
+    }
+}
+
+
 
 @Composable
-fun ConnectivityStatusBox(
+private fun ConnectivityStatusBox(
     isConnected: Boolean
 ) {
     val backgroundColor by animateColorAsState(targetValue = if (isConnected) green else red)
@@ -56,6 +86,8 @@ fun ConnectivityStatusBox(
     }
 }
 
+
+@ExperimentalAnimationApi
 @Preview(showBackground = true)
 @Composable
 private fun DefaultPreview() {
@@ -64,5 +96,8 @@ private fun DefaultPreview() {
 
         Spacer(modifier = Modifier.height(8.dp))
         ConnectivityStatusBox(false)
+
+        Spacer(modifier = Modifier.height(8.dp))
+        ConnectivityStatus()
     }
 }

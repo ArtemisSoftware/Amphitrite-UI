@@ -4,12 +4,16 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.NestedScrollConnection
 import androidx.compose.ui.input.nestedscroll.NestedScrollSource
 import androidx.compose.ui.input.nestedscroll.nestedScroll
@@ -34,16 +38,36 @@ fun BottomCollapseScreen() {
         bottomBarHeight.roundToPx().toFloat()
     }
     val bottomBarOffsetHeightPx = remember { mutableStateOf(0f) }
+
+
+    val fabHeight = bottomBarHeight + 72.dp
+    val fabHeightPx = with(LocalDensity.current) {
+        fabHeight.roundToPx().toFloat()
+    }
+    val fabOffsetHeightPx = remember { mutableStateOf(0f) }
+
+
+
     val nestedScrollConnection = remember {
         object : NestedScrollConnection {
             override fun onPreScroll(available: Offset, source: NestedScrollSource): Offset {
                 val delta = available.y
+
                 val newOffset = bottomBarOffsetHeightPx.value + delta
                 bottomBarOffsetHeightPx.value = newOffset.coerceIn(-bottomBarHeightPx, 0f)
+
+                val newFloatingButtonOffset = fabOffsetHeightPx.value + delta
+                fabOffsetHeightPx.value = newFloatingButtonOffset.coerceIn(-fabHeightPx, 0f)
+
                 return Offset.Zero
             }
         }
     }
+
+
+
+
+
     val scaffoldState = rememberScaffoldState()
 
     Scaffold(
@@ -72,6 +96,25 @@ fun BottomCollapseScreen() {
             ) {
                 CollapseBottomBar(
                     bottomNavigationItems = BottomScreen.getBottomNavigationItems()
+                )
+            }
+        },
+        floatingActionButton = {
+            FloatingActionButton(
+                onClick = {
+
+                },
+                shape = RoundedCornerShape(50),
+                backgroundColor = MaterialTheme.colors.primary,
+                modifier = Modifier
+                    .offset {
+                        IntOffset(x = 0, y = -fabOffsetHeightPx.value.roundToInt())
+                    }
+            ) {
+                Icon(
+                    Icons.Filled.Add,
+                    tint = Color.White,
+                    contentDescription = "Add Items"
                 )
             }
         },

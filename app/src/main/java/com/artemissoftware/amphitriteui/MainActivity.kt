@@ -47,8 +47,8 @@ class MainActivity : ComponentActivity() {
                     //SoundScreen()
                     //BottomSheetScreen()
                     //NestedScrollScreen()
-                    //BottomCollapseScreen()
-                    ConnectivityScreen()
+                    BottomCollapseScreen()
+                    //ConnectivityScreen()
 
 //                    SingleContent{
 //

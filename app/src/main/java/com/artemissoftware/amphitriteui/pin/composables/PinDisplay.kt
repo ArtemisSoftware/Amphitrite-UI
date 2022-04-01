@@ -50,18 +50,7 @@ fun PinDisplay() {
 //                modifier = Modifier.size(100.dp)
 //            )
 //        } else {
-//            Row {
-//                (0 until pinSize).forEach {
-//                    Icon(
-//                        imageVector = if (inputPin.size > it) Icons.Default.Circle else Icons.Outlined.Circle,
-//                        contentDescription = it.toString(),
-//                        modifier = Modifier
-//                            .padding(8.dp)
-//                            .size(30.dp),
-//                        tint = Color.Black
-//                    )
-//                }
-//            }
+            PinOTP(pinSize = 4)
 //        }
 //        Text(
 //            text = error.value,

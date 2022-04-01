@@ -3,13 +3,15 @@ package com.artemissoftware.amphitriteui.pin.composables
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.MaterialTheme.typography
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.outlined.Backspace
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -28,11 +30,12 @@ fun PinRow(
     ) {
         (start..end).forEach {
             PinKeyItem(
+//                onClick = onClick
 //                onClick = { inputPin.add(it) }
             ) {
                 Text(
                     text = it.toString(),
-                    style = MaterialTheme.typography.h5
+                    style = typography.h5
                 )
             }
         }
@@ -43,8 +46,8 @@ fun PinRow(
 
 @Composable
 fun PinOptionRow(
-
-){
+    inputPin: SnapshotStateList<Int>
+) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -76,9 +79,9 @@ fun PinOptionRow(
             modifier = Modifier
                 .size(25.dp)
                 .clickable {
-//                    if (inputPin.isNotEmpty()) {
-//                        inputPin.removeLast()
-//                    }
+                    if (inputPin.isNotEmpty()) {
+                        inputPin.removeLast()
+                    }
                 }
         )
     }
@@ -97,7 +100,6 @@ private fun PinRowPreview() {
 @Preview(showBackground = true)
 @Composable
 private fun PinOptionRowPreview() {
-    PinOptionRow(
-
-    )
+    val inputPin = remember { mutableStateListOf<Int>() }
+    PinOptionRow(inputPin)
 }

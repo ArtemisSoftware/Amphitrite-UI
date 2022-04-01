@@ -1,10 +1,7 @@
 package com.artemissoftware.amphitriteui.pin.composables
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.material.contentColorFor
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
@@ -16,7 +13,7 @@ import com.artemissoftware.amphitriteui.pin.PinScreen
 
 @Composable
 fun PinKeyItem(
-//    onClick: () -> Unit,
+//    onClick: (Int) -> Unit,
 //    modifier: Modifier = Modifier.padding(8.dp),
 //    shape: Shape = androidx.compose.material.MaterialTheme.shapes.small.copy(CornerSize(percent = 50)),
     backgroundColor: Color = MaterialTheme.colors.onPrimary,
@@ -31,7 +28,9 @@ fun PinKeyItem(
         color = backgroundColor,
         contentColor = contentColor,
 //        tonalElevation = elevation,
-//        onClick = onClick,
+//        onClick ={
+//            onClick
+//        },
 //        role = Role.Button,
 //        indication = rememberRipple()
     ) {
@@ -58,11 +57,16 @@ fun PinKeyItem(
 @Preview(showBackground = true)
 @Composable
 private fun DefaultPreview() {
-    PinKeyItem(content = {
+    PinKeyItem(
+
+//        onClick = {},
+        content = {
+
         Text(
             text = "1",
             style = MaterialTheme.typography.h5
         )
-    })
+    }
+    )
 }
 

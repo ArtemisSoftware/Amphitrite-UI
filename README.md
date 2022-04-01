@@ -9,5 +9,5 @@ App to explore simple ui ideas
     -Sound (with animation)
     -BottomSheet
     -NestedScroll
-    -BottomCollapse
+    -BottomCollapse + floatingbuttonsCollapse
     -Observe live connectivity

@@ -11,6 +11,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.artemissoftware.amphitriteui.Greeting
+import com.artemissoftware.amphitriteui.pin.composables.PinDisplay
 import com.artemissoftware.amphitriteui.pin.composables.PinKeyItem
 import com.artemissoftware.amphitriteui.pin.composables.PinOptionRow
 import com.artemissoftware.amphitriteui.pin.composables.PinRow
@@ -33,6 +34,9 @@ fun PinScreen() {
             Box(
                 modifier = Modifier.fillMaxSize()
             ) {
+
+
+                PinDisplay()
 
                 Column(
                     modifier = Modifier

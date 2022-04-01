@@ -11,3 +11,4 @@ App to explore simple ui ideas
     -NestedScroll
     -BottomCollapse + floatingbuttonsCollapse
     -Observe live connectivity
+    -Pin

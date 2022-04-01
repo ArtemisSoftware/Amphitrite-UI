@@ -3,6 +3,7 @@ package com.artemissoftware.amphitriteui.pin.composables
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
@@ -11,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
+@ExperimentalMaterialApi
 @Composable
 fun PinKeyboard(
     modifier: Modifier,
@@ -26,7 +28,7 @@ fun PinKeyboard(
         PinRow(
             start = 1,
             end = 3,
-            onClick = {index->
+            onPinClick = { index->
                 inputPin.add(index)
             }
         )
@@ -34,25 +36,29 @@ fun PinKeyboard(
         PinRow(
             start = 4,
             end = 6,
-            onClick = {index->
-//                            inputPin.add(it)
+            onPinClick = { index->
+                inputPin.add(index)
             }
         )
 
         PinRow(
             start = 7,
             end = 9,
-            onClick = {index->
-//                            inputPin.add(it)
+            onPinClick = { index->
+                inputPin.add(index)
             }
         )
 
         PinOptionRow(
-            inputPin = inputPin
+            inputPin = inputPin,
+            onPinClick = { index->
+                inputPin.add(0)
+            }
         )
     }
 }
 
+@ExperimentalMaterialApi
 @Preview(showBackground = true)
 @Composable
 private fun DefaultPreview() {

@@ -2,6 +2,7 @@ package com.artemissoftware.amphitriteui.pin.composables
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme.typography
 import androidx.compose.material.Text
@@ -17,11 +18,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
+@ExperimentalMaterialApi
 @Composable
 fun PinRow(
     start: Int,
     end: Int,
-    onClick: (Int) -> Unit,
+    onPinClick: (Int) -> Unit,
 ){
 
     Row(
@@ -30,8 +32,9 @@ fun PinRow(
     ) {
         (start..end).forEach {
             PinKeyItem(
-//                onClick = onClick
-//                onClick = { inputPin.add(it) }
+                onPinClick = {
+                    onPinClick.invoke(it)
+                }
             ) {
                 Text(
                     text = it.toString(),
@@ -44,9 +47,11 @@ fun PinRow(
 }
 
 
+@ExperimentalMaterialApi
 @Composable
 fun PinOptionRow(
-    inputPin: SnapshotStateList<Int>
+    inputPin: SnapshotStateList<Int>,
+    onPinClick: (Int) -> Unit,
 ) {
     Row(
         modifier = Modifier
@@ -63,9 +68,11 @@ fun PinOptionRow(
                 .clickable { }
         )
         PinKeyItem(
-//            onClick = { inputPin.add(0) },
-//            modifier = Modifier.padding(horizontal = 16.dp,
-//                vertical = 8.dp)
+            onPinClick = {
+                onPinClick.invoke(0)
+            },
+            modifier = Modifier.padding(horizontal = 16.dp,
+                vertical = 8.dp)
         ) {
             Text(
                 text = "0",
@@ -87,19 +94,21 @@ fun PinOptionRow(
     }
 }
 
+@ExperimentalMaterialApi
 @Preview(showBackground = true)
 @Composable
 private fun PinRowPreview() {
     PinRow(
         start = 1,
         end = 3,
-        onClick = {}
+        onPinClick = {}
     )
 }
 
+@ExperimentalMaterialApi
 @Preview(showBackground = true)
 @Composable
 private fun PinOptionRowPreview() {
     val inputPin = remember { mutableStateListOf<Int>() }
-    PinOptionRow(inputPin)
+    PinOptionRow(inputPin, onPinClick = {})
 }

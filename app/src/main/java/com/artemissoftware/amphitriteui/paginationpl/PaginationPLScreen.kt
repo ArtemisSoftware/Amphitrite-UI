@@ -23,6 +23,10 @@ fun PaginationPLScreen() {
 
             val item = state.items[i]
 
+            if (i >= state.items.size - 1 && !state.endReached && !state.isLoading) {
+                viewModel.loadNextItems()
+            }
+
             PageItem(item = item)
 
         }

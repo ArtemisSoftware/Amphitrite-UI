@@ -20,6 +20,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.artemissoftware.amphitriteui.bottomsheet.BottomSheetScreen
 import com.artemissoftware.amphitriteui.collapsebottomnavigation.BottomCollapseScreen
 import com.artemissoftware.amphitriteui.imagepicker.CameraApp
+import com.artemissoftware.amphitriteui.multilanguage.MultiLanguageScreen
 import com.artemissoftware.amphitriteui.nestedscroll.NestedScrollScreen
 import com.artemissoftware.amphitriteui.observeliveconnectivity.ConnectivityScreen
 import com.artemissoftware.amphitriteui.paginationpl.PaginationPLScreen
@@ -52,7 +53,8 @@ class MainActivity : ComponentActivity() {
                     //BottomCollapseScreen()
                     //ConnectivityScreen()
                     //PinScreen()
-                    PaginationPLScreen()
+                    //PaginationPLScreen()
+                    MultiLanguageScreen()
 
 //                    SingleContent{
 //

@@ -10,16 +10,20 @@ import java.util.*
 @Composable
 fun LanguageSetter(language: Language) {
 
-    val locale = Locale(language.language)
-    val context = LocalContext.current
+    val locale = Locale(language.abreviation)
+    var context = LocalContext.current
     val configuration = LocalConfiguration.current
     configuration.setLocale(locale)
 
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-        context.createConfigurationContext(configuration);
-    } else {
+    val resources = LocalContext.current.resources
+    resources.updateConfiguration(configuration, resources.displayMetrics);
 
-        val resources = LocalContext.current.resources
-        resources.updateConfiguration(configuration, resources.displayMetrics);
-    }
+
+//    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+//        context.createConfigurationContext(configuration);
+//    } else {
+//
+//        val resources = LocalContext.current.resources
+//        resources.updateConfiguration(configuration, resources.displayMetrics);
+//    }
 }

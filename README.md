@@ -12,3 +12,5 @@ App to explore simple ui ideas
     -BottomCollapse + floatingbuttonsCollapse
     -Observe live connectivity
     -Pin
+    -Pagination
+    -Multi-language

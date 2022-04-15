@@ -21,7 +21,7 @@ import com.artemissoftware.amphitriteui.ui.theme.AmphitriteUITheme
 import com.artemissoftware.amphitriteui.util.Constants.LANGUAGES
 
 @Composable
-private fun ToggleGroup(
+fun ToggleGroup(
     selectedPosition: Int,
     onClick: (Int) -> Unit
 ) {

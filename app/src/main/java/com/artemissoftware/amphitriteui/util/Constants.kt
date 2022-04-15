@@ -18,5 +18,4 @@ object Constants {
     const val FadeInAnimationDuration = 3000//300
     const val FadeOutAnimationDuration = 3000
 
-    val LANGUAGES = listOf("English", "Italian")
 }

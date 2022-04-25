@@ -68,6 +68,21 @@ fun TimeScreen() {
             Text(text = "Select time", color = Color.White)
         }
 
+
+        Spacer(modifier = Modifier.height(20.dp))
+
+        TextButton(
+            onClick = {
+                showDateAndTimePicker(context, dateTime)
+            },
+            modifier = Modifier
+                .clip(RoundedCornerShape(10.dp))
+                .background(Purple500)
+                .padding(5.dp)
+        ) {
+            Text(text = "Select date and time", color = Color.White)
+        }
+
         Spacer(modifier = Modifier.height(32.dp))
 
         Text(text = dateTime.value ?: "No Time Set")
@@ -100,6 +115,27 @@ fun showTimePicker(context: Context, dateTime: MutableState<String?>) {
 
     timePicker.show()
 }
+
+
+fun showDateAndTimePicker(context: Context, dateTime: MutableState<String?>) {
+
+    val currentDateTime = Calendar.getInstance()
+    val startYear = currentDateTime.get(Calendar.YEAR)
+    val startMonth = currentDateTime.get(Calendar.MONTH)
+    val startDay = currentDateTime.get(Calendar.DAY_OF_MONTH)
+
+    val startHour = currentDateTime.get(Calendar.HOUR_OF_DAY)
+    val startMinute = currentDateTime.get(Calendar.MINUTE)
+
+    val datePicker = DatePickerDialog(context, { _, year, month, day ->
+        TimePickerDialog(context, { _, hour, minute ->
+            dateTime.value = formatDateTime(year, month, day, hour, minute)
+        }, startHour, startMinute, false).show()
+    }, startYear, startMonth, startDay)
+
+    datePicker.show()
+}
+
 
 
 private fun formatDateTime(year: Int, monthOfYear: Int, dayOfMonth: Int): String{

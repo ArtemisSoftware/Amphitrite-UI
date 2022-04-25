@@ -27,6 +27,7 @@ import com.artemissoftware.amphitriteui.paginationpl.PaginationPLScreen
 import com.artemissoftware.amphitriteui.pin.PinScreen
 import com.artemissoftware.amphitriteui.ratingbar.RatingBar
 import com.artemissoftware.amphitriteui.sound.SoundScreen
+import com.artemissoftware.amphitriteui.time.TimeScreen
 import com.artemissoftware.amphitriteui.ui.theme.AmphitriteUITheme
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 
@@ -54,7 +55,8 @@ class MainActivity : ComponentActivity() {
                     //ConnectivityScreen()
                     //PinScreen()
                     //PaginationPLScreen()
-                    MultiLanguageScreen()
+                    //MultiLanguageScreen()
+                    TimeScreen()
 
 //                    SingleContent{
 //

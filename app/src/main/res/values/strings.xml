@@ -6,4 +6,8 @@
     <string name="logout">Logout</string>
     <string name="content">Jetpack Compose is Android’s modern toolkit for building native UI. It simplifies and accelerates UI development on Android. Quickly bring your app to life with less code, powerful tools, and intuitive Kotlin APIs.</string>
 
+    <string name="cd_back" translatable="false">Back</string>
+    <string name="click_label_select" translatable="false">select</string>
+    <string name="state_descr_selected" translatable="false">Selected</string>
+    <string name="state_descr_not_selected" translatable="false">Not selected</string>
 </resources>

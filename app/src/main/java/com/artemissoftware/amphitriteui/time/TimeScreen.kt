@@ -1,6 +1,7 @@
 package com.artemissoftware.amphitriteui.time
 
 import android.app.DatePickerDialog
+import android.app.TimePickerDialog
 import android.content.Context
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -57,7 +58,7 @@ fun TimeScreen() {
 
         TextButton(
             onClick = {
-                showDatePicker(context, dateTime)
+                showTimePicker(context, dateTime)
             },
             modifier = Modifier
                 .clip(RoundedCornerShape(10.dp))
@@ -75,15 +76,10 @@ fun TimeScreen() {
 
 fun showDatePicker(context: Context, dateTime: MutableState<String?>) {
 
-
-
-//        var time = ""
-        val currentDateTime = Calendar.getInstance()
-        val startYear = currentDateTime.get(Calendar.YEAR)
-        val startMonth = currentDateTime.get(Calendar.MONTH)
-        val startDay = currentDateTime.get(Calendar.DAY_OF_MONTH)
-//        val startHour = currentDateTime.get(Calendar.HOUR_OF_DAY)
-//        val startMinute = currentDateTime.get(Calendar.MINUTE)
+    val currentDateTime = Calendar.getInstance()
+    val startYear = currentDateTime.get(Calendar.YEAR)
+    val startMonth = currentDateTime.get(Calendar.MONTH)
+    val startDay = currentDateTime.get(Calendar.DAY_OF_MONTH)
 
     val datePicker = DatePickerDialog(context, { _, year, month, day ->
         dateTime.value = formatDateTime(year, month, day)
@@ -92,6 +88,18 @@ fun showDatePicker(context: Context, dateTime: MutableState<String?>) {
     datePicker.show()
 }
 
+fun showTimePicker(context: Context, dateTime: MutableState<String?>) {
+
+    val currentDateTime = Calendar.getInstance()
+    val startHour = currentDateTime.get(Calendar.HOUR_OF_DAY)
+    val startMinute = currentDateTime.get(Calendar.MINUTE)
+
+    val timePicker = TimePickerDialog(context, { _, hour, minute ->
+        dateTime.value = formatTime(hour, minute)
+    }, startHour, startMinute, false)
+
+    timePicker.show()
+}
 
 
 private fun formatDateTime(year: Int, monthOfYear: Int, dayOfMonth: Int): String{
@@ -103,4 +111,19 @@ private fun formatDateTime(year: Int, monthOfYear: Int, dayOfMonth: Int): String
     }
 
     return "$dayOfMonth - $monthStr - $year"
+}
+
+private fun formatDateTime(year: Int, monthOfYear: Int, dayOfMonth: Int, hour: Int, minute: Int): String{
+
+    val monthStr: String = if ((monthOfYear + 1).toString().length == 1) {
+        "0${monthOfYear + 1}"
+    } else {
+        monthOfYear.toString()
+    }
+
+    return "$dayOfMonth - $monthStr - $year $hour:$minute"
+}
+
+private fun formatTime(hour: Int, minute: Int): String{
+    return "$hour:$minute"
 }

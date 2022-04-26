@@ -48,13 +48,14 @@ private fun LazyListScope.itemsCalendarMonth(
     month: CalendarMonth,
     onDayClicked: (CalendarDay, CalendarMonth) -> Unit
 ) {
-//    item {
-//        MonthHeader(
-//            modifier = Modifier.padding(horizontal = 32.dp),
-//            month = month.name,
-//            year = month.year
-//        )
-//    }
+
+    item {
+        MonthHeader(
+            modifier = Modifier.padding(horizontal = 32.dp),
+            month = month.name,
+            year = month.year
+        )
+    }
 
     val contentModifier = Modifier
         .fillMaxWidth()
@@ -65,21 +66,22 @@ private fun LazyListScope.itemsCalendarMonth(
         DaysOfWeek(modifier = contentModifier)
     }
 
-//    month.weeks.value.forEachIndexed { index, week ->
-//        item(key = "${month.year}/${month.monthNumber}/${index + 1}") {
-//            Week(
-//                modifier = contentModifier,
-//                week = week,
+    month.weeks.value.forEachIndexed { index, week ->
+        item(key = "${month.year}/${month.monthNumber}/${index + 1}") {
+            Week(
+                modifier = contentModifier,
+                week = week,
 //                month = month,
 //                onDayClicked = { day ->
 //                    onDayClicked(day, month)
 //                }
-//            )
-//        }
-//        item {
-//            Spacer(Modifier.height(8.dp))
-//        }
-//    }
+            )
+        }
+
+        item {
+            Spacer(Modifier.height(8.dp))
+        }
+    }
 }
 
 
@@ -87,22 +89,5 @@ private fun LazyListScope.itemsCalendarMonth(
 @Composable
 private fun CalendarPreview() {
 
-    val january2021 = CalendarMonth(
-        name = "January",
-        year = "2021",
-        numDays = 31,
-        monthNumber = 1,
-        startDayOfWeek = DayOfWeek.Friday
-    )
-    val february2021 = CalendarMonth(
-        name = "February",
-        year = "2021",
-        numDays = 28,
-        monthNumber = 2,
-        startDayOfWeek = DayOfWeek.Monday
-    )
-
-    val list = listOf(january2021/*, february2021*/)
-
-    Calendar(calendarYear = list, onDayClicked = {_,_->})
+    Calendar(calendarYear = CalendarMonth.getMock_OneMonth(), onDayClicked = {_,_->})
 }

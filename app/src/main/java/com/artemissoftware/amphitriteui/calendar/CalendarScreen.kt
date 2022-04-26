@@ -4,7 +4,9 @@ import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import com.artemissoftware.amphitriteui.calendar.composables.Calendar
 import com.artemissoftware.amphitriteui.calendar.composables.CalendarTopAppBar
+import com.artemissoftware.amphitriteui.calendar.models.CalendarMonth
 
 @Composable
 fun CalendarScreen() {
@@ -17,7 +19,8 @@ fun CalendarScreen() {
             CalendarTopAppBar(selectedDates = selectedDates)
         }
     ) {
-        //Calendar(calendarYear, onDayClicked)
+
+        Calendar(calendarYear = CalendarMonth.getMock_OneMonth(), onDayClicked = {_,_ ->})
     }
 }
 

@@ -7,7 +7,7 @@ data class CalendarMonth(
     val monthNumber: Int,
     val startDayOfWeek: DayOfWeek
 ) {
-//    private val days = mutableListOf<CalendarDay>().apply {
+    private val days = mutableListOf<CalendarDay>().apply {
 //        for (i in 1..startDayOfWeek.ordinal) {
 //            add(
 //                CalendarDay(
@@ -16,15 +16,15 @@ data class CalendarMonth(
 //                )
 //            )
 //        }
-//        for (i in 1..numDays) {
-//            add(
-//                CalendarDay(
-//                    i.toString(),
-//                    DaySelectedStatus.NoSelected
-//                )
-//            )
-//        }
-//    }.toList()
+        for (i in 1..numDays) {
+            add(
+                CalendarDay(
+                    i.toString(),
+                    //DaySelectedStatus.NoSelected
+                )
+            )
+        }
+    }.toList()
 //
 //    fun getDay(day: Int): CalendarDay {
 //        return days[day + startDayOfWeek.ordinal - 1]
@@ -39,9 +39,9 @@ data class CalendarMonth(
 //        if (day >= numDays) return null
 //        return getDay(day + 1)
 //    }
-//
-//    val weeks = lazy { days.chunked(7).map { completeWeek(it) } }
-//
+
+    val weeks = lazy { days.chunked(7)/*.map { completeWeek(it) }*/ }
+
 //    private fun completeWeek(list: List<CalendarDay>): List<CalendarDay> {
 //        var gapsToFill = 7 - list.size
 //
@@ -61,4 +61,39 @@ data class CalendarMonth(
 //            list
 //        }
 //    }
+
+    companion object {
+
+        fun getMock_OneMonth() = listOf(
+
+            CalendarMonth(
+                name = "January",
+                year = "2021",
+                numDays = 31,
+                monthNumber = 1,
+                startDayOfWeek = DayOfWeek.Friday
+            )
+        )
+
+
+        fun getMock_TwoMonth() = listOf(
+
+            CalendarMonth(
+                name = "January",
+                year = "2021",
+                numDays = 31,
+                monthNumber = 1,
+                startDayOfWeek = DayOfWeek.Friday
+            ),
+            CalendarMonth(
+                name = "February",
+                year = "2021",
+                numDays = 28,
+                monthNumber = 2,
+                startDayOfWeek = DayOfWeek.Monday
+            )
+        )
+
+    }
+
 }

@@ -11,8 +11,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.artemissoftware.amphitriteui.calendar.models.CalendarDay
 import com.artemissoftware.amphitriteui.calendar.models.DayOfWeek
 import com.artemissoftware.amphitriteui.util.CalendarConstants.CELL_SIZE
+import com.artemissoftware.amphitriteui.util.CalendarWeek
 
-typealias CalendarWeek = List<CalendarDay>
 
 @Composable
 fun Week(

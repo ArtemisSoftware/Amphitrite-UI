@@ -65,7 +65,7 @@ fun Day(
 
 
 @Composable
-private fun DaysOfWeek(modifier: Modifier = Modifier) {
+fun DaysOfWeek(modifier: Modifier = Modifier) {
     Row(modifier = modifier.clearAndSetSemantics { }) {
         for (day in DayOfWeek.values()) {
             Day(name = day.name.take(1))

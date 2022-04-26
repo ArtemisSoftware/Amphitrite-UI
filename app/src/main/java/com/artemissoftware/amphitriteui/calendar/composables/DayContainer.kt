@@ -15,7 +15,7 @@ import com.artemissoftware.amphitriteui.util.CalendarConstants.CELL_SIZE
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-private fun DayContainer(
+fun DayContainer(
     modifier: Modifier = Modifier,
     selected: Boolean = false,
     onClick: () -> Unit = { },

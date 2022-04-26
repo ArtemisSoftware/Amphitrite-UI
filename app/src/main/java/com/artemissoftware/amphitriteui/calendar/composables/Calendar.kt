@@ -21,9 +21,9 @@ fun Calendar(
 ) {
     LazyColumn(modifier = modifier) {
 
-//        item {
-//            Spacer(Modifier.height(32.dp))
-//        }
+        item {
+            Spacer(Modifier.height(32.dp))
+        }
 
         for (month in calendarYear) {
 
@@ -32,9 +32,9 @@ fun Calendar(
                 onDayClicked = onDayClicked
             )
 
-//            item {
-//                Spacer(Modifier.height(32.dp))
-//            }
+            item {
+                Spacer(Modifier.height(32.dp))
+            }
         }
 
 //        item {

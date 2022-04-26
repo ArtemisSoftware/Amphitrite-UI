@@ -29,7 +29,7 @@ fun DayContainer(
     )
     Surface(
         modifier = modifier
-            .size(width = CELL_SIZE, height = CELL_SIZE)
+            .size(CELL_SIZE)
             .then(
                 if (onClickEnabled) {
                     modifier.semantics {

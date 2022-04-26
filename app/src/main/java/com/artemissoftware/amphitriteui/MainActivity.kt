@@ -18,6 +18,7 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.artemissoftware.amphitriteui.bottomsheet.BottomSheetScreen
+import com.artemissoftware.amphitriteui.calendar.CalendarScreen
 import com.artemissoftware.amphitriteui.collapsebottomnavigation.BottomCollapseScreen
 import com.artemissoftware.amphitriteui.imagepicker.CameraApp
 import com.artemissoftware.amphitriteui.multilanguage.MultiLanguageScreen
@@ -56,7 +57,8 @@ class MainActivity : ComponentActivity() {
                     //PinScreen()
                     //PaginationPLScreen()
                     //MultiLanguageScreen()
-                    TimeScreen()
+                    //TimeScreen()
+                    CalendarScreen()
 
 //                    SingleContent{
 //

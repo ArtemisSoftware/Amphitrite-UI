@@ -20,7 +20,7 @@ fun CalendarScreen() {
         }
     ) {
 
-        Calendar(calendarYear = CalendarMonth.getMock_OneMonth(), onDayClicked = {_,_ ->})
+        Calendar(calendarYear = CalendarMonth.getMock_MoreMonths(), onDayClicked = {_,_ ->})
     }
 }
 

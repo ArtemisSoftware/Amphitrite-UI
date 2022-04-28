@@ -1,7 +1,9 @@
 package com.artemissoftware.amphitriteui.calendar.composables
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -11,6 +13,7 @@ import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
 import com.artemissoftware.amphitriteui.R
+import com.artemissoftware.amphitriteui.calendar.models.DaySelectedStatus
 import com.artemissoftware.amphitriteui.util.CalendarConstants.CELL_SIZE
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -44,6 +47,27 @@ fun DayContainer(
         color = backgroundColor,
         onClickLabel = onClickLabel
     ) {
+        content()
+    }
+}
+
+@Composable
+fun DayStatusContainer(
+    status: DaySelectedStatus,
+    content: @Composable () -> Unit
+) {
+    if (DaySelectedStatus.isMarked(status)) {
+        Box {
+            val color = MaterialTheme.colors.secondary
+            Circle(color = color)
+//            if (status == DaySelectedStatus.FirstDay) {
+//                SemiRect(color = color, lookingLeft = false)
+//            } else if (status == DaySelectedStatus.LastDay) {
+//                SemiRect(color = color, lookingLeft = true)
+//            }
+            content()
+        }
+    } else {
         content()
     }
 }

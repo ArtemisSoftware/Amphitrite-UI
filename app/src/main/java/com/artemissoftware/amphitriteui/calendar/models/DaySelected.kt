@@ -30,7 +30,7 @@ data class DaySelected(
 //
 
     companion object{
-        val EMPTY = DaySelected(-1, CalendarMonth("", "", 0, 0, DayOfWeek.Sunday), emptyList())
+        val EMPTY_DAY = DaySelected(-1, CalendarMonth("", "", 0, 0, DayOfWeek.Sunday), emptyList())
     }
 }
 

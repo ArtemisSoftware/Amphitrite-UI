@@ -1,8 +1,12 @@
 package com.artemissoftware.amphitriteui.calendar.models
 
-data class CalendarDay(
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
+
+class CalendarDay(
     val value: String,
-    //status: DaySelectedStatus
+    status: DaySelectedStatus
 ) {
-    //var status by mutableStateOf(status)
+    var status by mutableStateOf(status)
 }

@@ -1,6 +1,7 @@
 package com.artemissoftware.amphitriteui.calendar
 
 import androidx.lifecycle.ViewModel
+import com.artemissoftware.amphitriteui.calendar.models.DaySelected
 import com.artemissoftware.amphitriteui.calendar.repository.CalendarRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -11,16 +12,18 @@ class CalendarViewModel @Inject constructor(
 ): ViewModel() {
 
 //    val datesSelected = calendarRepository.datesSelected
-//    val datesSelected = DatesSelectedState(datesLocalDataSource.year2021)
+    val datesSelectedState = DatesSelectedState(calendarRepository.getCalendarYear())
 
 
     val calendarYear = calendarRepository.getCalendarYear()
 
-//    fun onDaySelected(daySelected: DaySelected) {
+    fun onDaySelected(daySelected: DaySelected) {
+
+        datesSelectedState.daySelected(daySelected)
 //        viewModelScope.launch {
 //            datesRepository.onDaySelected(daySelected)
 //        }
-//    }
+    }
 //
 //
 //    suspend fun onDaySelected(daySelected: DaySelected) = withContext(defaultDispatcher) {

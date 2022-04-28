@@ -72,9 +72,9 @@ private fun LazyListScope.itemsCalendarMonth(
                 modifier = contentModifier,
                 week = week,
 //                month = month,
-//                onDayClicked = { day ->
-//                    onDayClicked(day, month)
-//                }
+                onDayClicked = { day ->
+                    onDayClicked(day, month)
+                }
             )
         }
 

@@ -10,6 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.artemissoftware.amphitriteui.calendar.models.CalendarDay
 import com.artemissoftware.amphitriteui.calendar.models.DayOfWeek
+import com.artemissoftware.amphitriteui.calendar.models.DaySelectedStatus
 import com.artemissoftware.amphitriteui.util.CalendarConstants.CELL_SIZE
 import com.artemissoftware.amphitriteui.util.CalendarWeek
 
@@ -19,7 +20,7 @@ fun Week(
     modifier: Modifier = Modifier,
 //    month: CalendarMonth,
     week: CalendarWeek,
-//    onDayClicked: (CalendarDay) -> Unit
+    onDayClicked: (CalendarDay) -> Unit
 ) {
     //val (leftFillColor, rightFillColor) = getLeftRightWeekColors(week, month)
 
@@ -39,7 +40,7 @@ fun Week(
         for (day in week) {
             Day(
                 day = day,
-//                onDayClicked,
+                onDayClicked = onDayClicked
 //                month
             )
         }
@@ -57,5 +58,5 @@ fun Week(
 @Composable
 private fun WeekPreview() {
 
-    Week(week = listOf(CalendarDay("2"), CalendarDay("3")))
+    Week(week = listOf(CalendarDay("2", DaySelectedStatus.Selected), CalendarDay("3", DaySelectedStatus.Selected)), onDayClicked = {})
 }

@@ -12,6 +12,7 @@ data class CalendarMonth(
             add(
                 CalendarDay(
                     "",
+                    DaySelectedStatus.Selected
 //                    DaySelectedStatus.NonClickable
                 )
             )
@@ -20,6 +21,7 @@ data class CalendarMonth(
             add(
                 CalendarDay(
                     i.toString(),
+                    DaySelectedStatus.Selected
                     //DaySelectedStatus.NoSelected
                 )
             )
@@ -53,6 +55,7 @@ data class CalendarMonth(
                 mutableList.add(
                     CalendarDay(
                         "",
+                        DaySelectedStatus.Selected
 //                        DaySelectedStatus.NonClickable
                     )
                 )

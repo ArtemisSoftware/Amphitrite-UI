@@ -6,11 +6,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.artemissoftware.amphitriteui.realtimeupdate.composables.RealTimeUpdateItemCard
+import com.artemissoftware.amphitriteui.realtimeupdate.usecases.DownloadItemUseCase
 
 @Composable
 fun RealTimeUpdateScreen() {
 
     val viewModel: RealTimeUpdateViewModel = viewModel()
+    viewModel.downloadItemUseCase = DownloadItemUseCase()
+
     val realTimeUpdateItem = viewModel.realTimeUpdate.collectAsState()
 
     LazyColumn {
@@ -18,7 +21,7 @@ fun RealTimeUpdateScreen() {
             RealTimeUpdateItemCard(
                 realTimeUpdateItem = item,
                 onDownloadClick = {
-                    //viewModel.onDownloadRealTimeUpdateItemClicked(item.id, index)
+                    viewModel.startDownload(item.id, index)
                 }
             )
         }

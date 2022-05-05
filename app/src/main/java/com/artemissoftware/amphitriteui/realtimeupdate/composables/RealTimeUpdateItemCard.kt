@@ -1,9 +1,11 @@
 package com.artemissoftware.amphitriteui.realtimeupdate.composables
 
+import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -20,13 +22,6 @@ fun RealTimeUpdateItemCard(
     onDownloadClick: () -> Unit
 ) {
 
-        val title = realTimeUpdateItem.title
-//    val title = remember { realTimeUpdateItem.title }
-
-//    val animatedProgress: Float by animateFloatAsState(targetValue = realTimeUpdateItem.downloadProgress / 100f)
-
-
-
     Card(
         backgroundColor = Color.White,
         shape = RoundedCornerShape(8.dp),
@@ -37,7 +32,7 @@ fun RealTimeUpdateItemCard(
     ) {
         Row {
             Text(
-                text = title,
+                text = realTimeUpdateItem.title,
                 modifier = Modifier.padding(16.dp),
                 color = Color.Black,
                 textAlign = TextAlign.Center
@@ -62,6 +57,7 @@ private fun DownloadProgress(
 ) {
 
     val isDownloaded = realTimeUpdateItem.downloadProgress == 100
+    val animatedProgress: Float by animateFloatAsState(targetValue = realTimeUpdateItem.downloadProgress / 100f)
 
     Box(
         modifier = modifier
@@ -74,7 +70,7 @@ private fun DownloadProgress(
             modifier = Modifier
                 .size(36.dp)
                 .align(Alignment.CenterEnd),
-            //progress = animatedProgress,
+            progress = animatedProgress,
             color = if (isDownloaded) Color.Green else Color.Black
         )
 

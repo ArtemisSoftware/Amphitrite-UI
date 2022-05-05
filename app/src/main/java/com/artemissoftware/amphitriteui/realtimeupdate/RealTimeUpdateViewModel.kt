@@ -3,24 +3,28 @@ package com.artemissoftware.amphitriteui.realtimeupdate
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.artemissoftware.amphitriteui.realtimeupdate.model.RealTimeUpdate
+import com.artemissoftware.amphitriteui.realtimeupdate.usecases.DownloadItemUseCase
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
 class RealTimeUpdateViewModel: ViewModel() {
 
-    private val _realTimeUpdate = MutableStateFlow(listOf<RealTimeUpdate>())
-    val realTimeUpdate: StateFlow<List<RealTimeUpdate>> get() = _realTimeUpdate
 
-    //private val downloadQueue: MutableMap<Int, Flow<Int>> = mutableMapOf()
+    lateinit var downloadItemUseCase: DownloadItemUseCase
+
+
+    private val _realTimeUpdate = MutableStateFlow(listOf<RealTimeUpdate>())
+    val realTimeUpdate: StateFlow<List<RealTimeUpdate>> = _realTimeUpdate
+
+    private val downloadQueue: MutableMap<Int, Flow<Int>> = mutableMapOf()
 
     init {
         getRealTimeUpdateItem()
     }
 
     private fun getRealTimeUpdateItem() {
-        viewModelScope.launch(Dispatchers.Default) {
+        viewModelScope.launch(context = Dispatchers.Default) {
 
             val initialRealTimeUpdateItem = arrayListOf<RealTimeUpdate>()
 
@@ -35,41 +39,29 @@ class RealTimeUpdateViewModel: ViewModel() {
         }
     }
 
-//    private fun provideDownloadFlow(RealTimeUpdateItemId: Int): Flow<Int> {
-//        return flow {
-//            var progress = 10
-//            emit(progress)
-//            repeat(100) {
-//                progress += Random.nextInt(10, 25)
-//                delay(500L)
-//                if (progress >= 100)
-//                    emit(100)
-//                else
-//                    emit(progress)
-//                if (progress >= 100) {
-//                    downloadQueue.remove(RealTimeUpdateItemId)
-//                    return@flow
-//                }
-//            }
-//        }
-//    }
-//
-//    fun onDownloadRealTimeUpdateItemClicked(RealTimeUpdateItemId: Int, index: Int) {
-//        if (downloadQueue.containsKey(RealTimeUpdateItemId))
-//            return
-//        val download: Flow<Int> = provideDownloadFlow(RealTimeUpdateItemId)
-//        downloadQueue[RealTimeUpdateItemId] = download
-//        observeDownload(index, download)
-//    }
-//
-//    private fun observeDownload(index: Int, download: Flow<Int>) {
-//        viewModelScope.launch(Dispatchers.Default) {
-//            download.collect { progress ->
-//                val updatedRealTimeUpdateItem = _realTimeUpdateItem.value[index].copy(downloadProgress = progress)
-//                val mutableRealTimeUpdateItem = _realTimeUpdateItem.value.toMutableList()
-//                mutableRealTimeUpdateItem[index] = updatedRealTimeUpdateItem
-//                _realTimeUpdateItem.value = mutableRealTimeUpdateItem.toList()
-//            }
-//        }
-//    }
+    fun startDownload(itemId: Int, index: Int) {
+        if (downloadQueue.containsKey(itemId))
+            return
+        val download: Flow<Int> = downloadItemUseCase(itemId)
+        downloadQueue[itemId] = download
+        observeDownload(index, download)
+    }
+
+    private fun observeDownload(index: Int, download: Flow<Int>) {
+
+        download.onEach { progress ->
+
+            if (progress >= 100) {
+                downloadQueue.remove(_realTimeUpdate.value[index].id)
+            }
+
+            val realtimeItem = _realTimeUpdate.value[index].copy(downloadProgress = progress)
+
+            val downloadList = _realTimeUpdate.value.toMutableList()
+            downloadList[index] = realtimeItem
+            _realTimeUpdate.value = downloadList.toList()
+
+        }.launchIn(viewModelScope)
+
+    }
 }

@@ -8,7 +8,7 @@ data class RealTimeUpdate(
 
     companion object{
 
-        fun getMock() =  RealTimeUpdate(id = 1, title = "The first title", downloadProgress = 10)
+        fun getMock(progress: Int = 0) =  RealTimeUpdate(id = 1, title = "The first title", downloadProgress = progress)
 
     }
 

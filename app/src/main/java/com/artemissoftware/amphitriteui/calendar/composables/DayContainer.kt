@@ -58,13 +58,22 @@ fun DayStatusContainer(
 ) {
     if (DaySelectedStatus.isMarked(status)) {
         Box {
+
             val color = MaterialTheme.colors.secondary
+
             Circle(color = color)
-//            if (status == DaySelectedStatus.FirstDay) {
-//                SemiRect(color = color, lookingLeft = false)
-//            } else if (status == DaySelectedStatus.LastDay) {
+
+            when{
+
+                status == DaySelectedStatus.FirstDay->{
+                    SemiRect(color = color, lookingLeft = false)
+                }
+//                status == DaySelectedStatus.LastDay->{
 //                SemiRect(color = color, lookingLeft = true)
-//            }
+//                }
+            }
+
+
             content()
         }
     } else {

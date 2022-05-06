@@ -1,12 +1,12 @@
 package com.artemissoftware.amphitriteui.calendar.models
 
 enum class DaySelectedStatus {
-    //    NoSelected,
+    NoSelected,
     Selected,
-//    NonClickable,
-//    FirstDay,
+    NonClickable,
+    FirstDay,
 //    LastDay,
-//    FirstLastDay
+    FirstLastDay
     ;
 
     companion object {
@@ -14,9 +14,9 @@ enum class DaySelectedStatus {
         fun isMarked(selectedStatus: DaySelectedStatus): Boolean {
             return when (selectedStatus) {
                 Selected -> true
-//                FirstDay -> true
+                FirstDay -> true
 //                LastDay -> true
-//                FirstLastDay -> true
+                FirstLastDay -> true
                 else -> false
             }
 

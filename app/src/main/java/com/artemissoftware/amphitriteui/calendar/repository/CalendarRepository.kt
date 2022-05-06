@@ -3,8 +3,9 @@ package com.artemissoftware.amphitriteui.calendar.repository
 import com.artemissoftware.amphitriteui.calendar.models.CalendarMonth
 import com.artemissoftware.amphitriteui.calendar.models.DayOfWeek
 import com.artemissoftware.amphitriteui.util.CalendarYear
+import javax.inject.Inject
 
-class CalendarRepository {
+class CalendarRepository @Inject constructor(){
 
     fun getCalendarYear(): CalendarYear {
         val january2021 = CalendarMonth(
@@ -93,17 +94,17 @@ class CalendarRepository {
         )
         val year2021: CalendarYear = listOf(
             january2021,
-            february2021,
-            march2021,
-            april2021,
-            may2021,
-            june2021,
-            july2021,
-            august2021,
-            september2021,
-            october2021,
-            november2021,
-            december2021
+//            february2021,
+//            march2021,
+//            april2021,
+//            may2021,
+//            june2021,
+//            july2021,
+//            august2021,
+//            september2021,
+//            october2021,
+//            november2021,
+//            december2021
         )
 
         return year2021

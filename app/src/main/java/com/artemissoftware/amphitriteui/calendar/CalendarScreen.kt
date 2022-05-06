@@ -15,7 +15,7 @@ fun CalendarScreen() {
 
     val calendarViewModel: CalendarViewModel = hiltViewModel()
     val calendarYear = calendarViewModel.calendarYear
-    val selectedDates = ""
+    val selectedDates = calendarViewModel.datesSelectedState.toString()
 
     Scaffold(
         backgroundColor = Color.White,
@@ -25,7 +25,7 @@ fun CalendarScreen() {
     ) {
 
         Calendar(
-            calendarYear = CalendarMonth.getMock_MoreMonths(),
+            calendarYear = calendarYear,
             onDayClicked = { calendarDay, calendarMonth ->
                 calendarViewModel.onDaySelected(
                     DaySelected(

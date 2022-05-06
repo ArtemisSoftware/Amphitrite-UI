@@ -12,8 +12,7 @@ data class CalendarMonth(
             add(
                 CalendarDay(
                     "",
-                    DaySelectedStatus.Selected
-//                    DaySelectedStatus.NonClickable
+                    DaySelectedStatus.NonClickable
                 )
             )
         }
@@ -21,17 +20,16 @@ data class CalendarMonth(
             add(
                 CalendarDay(
                     i.toString(),
-                    DaySelectedStatus.Selected
-                    //DaySelectedStatus.NoSelected
+                    DaySelectedStatus.NoSelected
                 )
             )
         }
     }.toList()
-//
-//    fun getDay(day: Int): CalendarDay {
-//        return days[day + startDayOfWeek.ordinal - 1]
-//    }
-//
+
+    fun getDay(day: Int): CalendarDay {
+        return days[day + startDayOfWeek.ordinal - 1]
+    }
+
 //    fun getPreviousDay(day: Int): CalendarDay? {
 //        if (day <= 1) return null
 //        return getDay(day - 1)
@@ -55,8 +53,7 @@ data class CalendarMonth(
                 mutableList.add(
                     CalendarDay(
                         "",
-                        DaySelectedStatus.Selected
-//                        DaySelectedStatus.NonClickable
+                        DaySelectedStatus.NonClickable
                     )
                 )
                 gapsToFill--

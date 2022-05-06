@@ -14,3 +14,6 @@ App to explore simple ui ideas
     -Pin
     -Pagination
     -Multi-language
+    -Time and date Pickers
+    -Calendar
+    -Real time update

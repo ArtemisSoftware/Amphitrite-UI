@@ -1,9 +1,6 @@
 package com.artemissoftware.amphitriteui.calendar.composables
 
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -58,5 +55,9 @@ fun Week(
 @Composable
 private fun WeekPreview() {
 
-    Week(week = listOf(CalendarDay("2", DaySelectedStatus.Selected), CalendarDay("3", DaySelectedStatus.Selected)), onDayClicked = {})
+    Column{
+        Week(week = listOf(CalendarDay("2", DaySelectedStatus.Selected), CalendarDay("3", DaySelectedStatus.Selected)), onDayClicked = {})
+        Week(week = listOf(CalendarDay("12", DaySelectedStatus.FirstDay), CalendarDay("13", DaySelectedStatus.Selected)), onDayClicked = {})
+    }
+
 }

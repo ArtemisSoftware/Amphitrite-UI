@@ -81,7 +81,9 @@ private fun DayPreview() {
     
     Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
         Day("2")
-        Day(day = CalendarDay(value = "15", DaySelectedStatus.Selected), onDayClicked = {})
+        Day(day = CalendarDay(value = "15", status = DaySelectedStatus.Selected), onDayClicked = {})
+        Day(day = CalendarDay(value = "15", status = DaySelectedStatus.FirstDay), onDayClicked = {})
+        //Day(day = CalendarDay(value = "15", status = DaySelectedStatus.LastDay), onDayClicked = {})
     }
     
 

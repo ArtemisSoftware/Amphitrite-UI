@@ -32,7 +32,9 @@ import com.artemissoftware.amphitriteui.sound.SoundScreen
 import com.artemissoftware.amphitriteui.time.TimeScreen
 import com.artemissoftware.amphitriteui.ui.theme.AmphitriteUITheme
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     @ExperimentalPermissionsApi
     @ExperimentalAnimationApi
@@ -59,8 +61,9 @@ class MainActivity : ComponentActivity() {
                     //PaginationPLScreen()
                     //MultiLanguageScreen()
                     //TimeScreen()
-                    //CalendarScreen()
-                    RealTimeUpdateScreen()
+                    CalendarScreen()
+                    //RealTimeUpdateScreen()
+
 //                    SingleContent{
 //
 //                        //ExoPlayer(url = VIDEO_URL)

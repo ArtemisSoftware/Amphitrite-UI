@@ -1,26 +1,22 @@
 package com.artemissoftware.amphitriteui.calendar
 
+import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import com.artemissoftware.amphitriteui.calendar.models.DaySelected
 import com.artemissoftware.amphitriteui.calendar.models.DaySelected.Companion.EMPTY_DAY
+import com.artemissoftware.amphitriteui.calendar.models.DaySelectedStatus
 import com.artemissoftware.amphitriteui.util.CalendarYear
 
 class DatesSelectedState(private val year: CalendarYear) {
 
     private var from by mutableStateOf(EMPTY_DAY)
     private var to by mutableStateOf(EMPTY_DAY)
-//
-//    override fun toString(): String {
-//        if (from == DaySelectedEmpty && to == DaySelectedEmpty) return ""
-//        var output = from.toString()
-//        if (to != DaySelectedEmpty) {
-//            output += " - $to"
-//        }
-//        return output
-//    }
-//
+
+
+
+
     fun daySelected(newDate: DaySelected) {
 
         when{
@@ -28,10 +24,20 @@ class DatesSelectedState(private val year: CalendarYear) {
             from == EMPTY_DAY && to == EMPTY_DAY ->{
                 setDates(newFrom = newDate, newTo = EMPTY_DAY)
             }
+            from != EMPTY_DAY && to != EMPTY_DAY ->{
 
+            }
+            from == EMPTY_DAY ->{
 
+            }
+            to == EMPTY_DAY ->{
+                if (newDate < from) setDates(newDate, from)
+                else if (newDate > from) setDates(from, newDate)
+            }
         }
 
+
+        Log.d("Calendar", this.toString())
 
 //        if (from == EMPTY_DAY && to == EMPTY_DAY) {
 //            setDates(newDate, DaySelectedEmpty)
@@ -50,13 +56,13 @@ class DatesSelectedState(private val year: CalendarYear) {
     private fun setDates(newFrom: DaySelected, newTo: DaySelected) {
         if (newTo == EMPTY_DAY) {
             from = newFrom
-//            from.calendarDay.value.status = DaySelectedStatus.FirstLastDay
+            from.calendarDay.value.status = DaySelectedStatus.FirstLastDay
         }
-//        else {
-//            from = newFrom.apply { calendarDay.value.status = DaySelectedStatus.FirstDay }
+        else {
+            from = newFrom.apply { calendarDay.value.status = DaySelectedStatus.FirstDay }
 //            selectDatesInBetween(newFrom, newTo)
 //            to = newTo.apply { calendarDay.value.status = DaySelectedStatus.LastDay }
-//        }
+        }
     }
 
 //    private fun selectDatesInBetween(from: DaySelected, to: DaySelected) {
@@ -111,4 +117,17 @@ class DatesSelectedState(private val year: CalendarYear) {
 //        to.calendarDay.value.status = DaySelectedStatus.NoSelected
 //        to = DaySelectedEmpty
 //    }
+
+    override fun toString(): String {
+
+        if (from == EMPTY_DAY && to == EMPTY_DAY) return ""
+
+        var output = from.toString()
+
+        if (to != EMPTY_DAY) {
+            output += " - $to"
+        }
+
+        return output
+    }
 }

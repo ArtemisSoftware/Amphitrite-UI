@@ -28,6 +28,7 @@ import com.artemissoftware.amphitriteui.paginationpl.PaginationPLScreen
 import com.artemissoftware.amphitriteui.pin.PinScreen
 import com.artemissoftware.amphitriteui.ratingbar.RatingBar
 import com.artemissoftware.amphitriteui.realtimeupdate.RealTimeUpdateScreen
+import com.artemissoftware.amphitriteui.showcase.ShowCaseScreen
 import com.artemissoftware.amphitriteui.sound.SoundScreen
 import com.artemissoftware.amphitriteui.time.TimeScreen
 import com.artemissoftware.amphitriteui.ui.theme.AmphitriteUITheme
@@ -61,8 +62,9 @@ class MainActivity : ComponentActivity() {
                     //PaginationPLScreen()
                     //MultiLanguageScreen()
                     //TimeScreen()
-                    CalendarScreen()
+                    //--CalendarScreen()
                     //RealTimeUpdateScreen()
+                    ShowCaseScreen()
 
 //                    SingleContent{
 //

@@ -30,15 +30,15 @@ data class CalendarMonth(
         return days[day + startDayOfWeek.ordinal - 1]
     }
 
-//    fun getPreviousDay(day: Int): CalendarDay? {
-//        if (day <= 1) return null
-//        return getDay(day - 1)
-//    }
-//
-//    fun getNextDay(day: Int): CalendarDay? {
-//        if (day >= numDays) return null
-//        return getDay(day + 1)
-//    }
+    fun getPreviousDay(day: Int): CalendarDay? {
+        if (day <= 1) return null
+        return getDay(day - 1)
+    }
+
+    fun getNextDay(day: Int): CalendarDay? {
+        if (day >= numDays) return null
+        return getDay(day + 1)
+    }
 
     val weeks = lazy { days.chunked(7).map { completeWeek(it) } }
 
@@ -66,6 +66,15 @@ data class CalendarMonth(
     }
 
     companion object {
+
+        fun getMockMonth() = CalendarMonth(
+                name = "January",
+                year = "2021",
+                numDays = 31,
+                monthNumber = 1,
+                startDayOfWeek = DayOfWeek.Friday
+            )
+
 
         fun getMock_OneMonth() = listOf(
 

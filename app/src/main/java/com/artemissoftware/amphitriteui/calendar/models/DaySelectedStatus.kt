@@ -5,9 +5,19 @@ enum class DaySelectedStatus {
     Selected,
     NonClickable,
     FirstDay,
-//    LastDay,
+    LastDay,
     FirstLastDay
     ;
+
+    fun isMarked(): Boolean {
+        return when (this) {
+            Selected -> true
+            FirstDay -> true
+            LastDay -> true
+            FirstLastDay -> true
+            else -> false
+        }
+    }
 
     companion object {
 
@@ -15,11 +25,10 @@ enum class DaySelectedStatus {
             return when (selectedStatus) {
                 Selected -> true
                 FirstDay -> true
-//                LastDay -> true
+                LastDay -> true
                 FirstLastDay -> true
                 else -> false
             }
-
         }
     }
 }

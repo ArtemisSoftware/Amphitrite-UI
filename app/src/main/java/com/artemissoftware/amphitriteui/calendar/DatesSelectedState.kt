@@ -61,7 +61,7 @@ class DatesSelectedState(private val year: CalendarYear) {
         else {
             from = newFrom.apply { calendarDay.value.status = DaySelectedStatus.FirstDay }
 //            selectDatesInBetween(newFrom, newTo)
-//            to = newTo.apply { calendarDay.value.status = DaySelectedStatus.LastDay }
+            to = newTo.apply { calendarDay.value.status = DaySelectedStatus.LastDay }
         }
     }
 

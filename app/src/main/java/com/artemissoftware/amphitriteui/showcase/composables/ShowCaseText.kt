@@ -5,19 +5,15 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.geometry.Rect
-import androidx.compose.ui.layout.LayoutCoordinates
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.artemissoftware.amphitriteui.Greeting
-import com.artemissoftware.amphitriteui.showcase.models.ShowCase
-import com.artemissoftware.amphitriteui.ui.theme.AmphitriteUITheme
+import com.artemissoftware.amphitriteui.showcase.models.ShowCaseInfo
 
 @Composable
 fun ShowCaseText(
-    currentTarget: ShowCase,
+    currentTarget: ShowCaseInfo,
 //    boundsInParent: Rect,
 //    targetRadius: Float,
 //    onGloballyPositioned: (LayoutCoordinates) -> Unit
@@ -61,7 +57,7 @@ fun ShowCaseText(
 @Preview(showBackground = true)
 @Composable
 private fun DefaultPreview() {
-    ShowCaseText(currentTarget = ShowCase.getMock())
+    ShowCaseText(currentTarget = ShowCaseInfo.getMock())
 }
 
 /*

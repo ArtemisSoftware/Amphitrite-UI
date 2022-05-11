@@ -1,9 +1,8 @@
 package com.artemissoftware.amphitriteui.showcase.models
 
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.LayoutCoordinates
 
-data class ShowCase(
+data class ShowCaseInfo(
     val index: Int,
     //val coordinate: LayoutCoordinates,
     val title: String,
@@ -14,7 +13,7 @@ data class ShowCase(
 
     companion object{
 
-        fun getMock() = ShowCase(
+        fun getMock() = ShowCaseInfo(
                 index = 1,
                 title = "The title",
                 subTitle = "the subtitle",

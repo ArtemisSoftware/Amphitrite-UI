@@ -17,3 +17,4 @@ App to explore simple ui ideas
     -Time and date Pickers
     -Calendar
     -Real time update
+    -Show case

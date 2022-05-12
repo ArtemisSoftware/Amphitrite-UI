@@ -8,6 +8,6 @@ data class ShowCaseInfo(
     val coordinate: LayoutCoordinates,
     val title: String,
     val subTitle: String,
-    val titleColor: Color = Color.Green,
-    val subTitleColor: Color = Color.Green
+    val titleColor: Color = Color.White,
+    val subTitleColor: Color = Color.White
 )

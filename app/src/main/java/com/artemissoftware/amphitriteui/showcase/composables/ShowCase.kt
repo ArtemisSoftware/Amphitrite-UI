@@ -1,5 +1,6 @@
 package com.artemissoftware.amphitriteui.showcase.composables
 
+import androidx.compose.animation.core.*
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Box
@@ -9,11 +10,20 @@ import androidx.compose.runtime.snapshots.SnapshotStateMap
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Rect
+import androidx.compose.ui.graphics.BlendMode
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.LayoutCoordinates
 import androidx.compose.ui.layout.boundsInRoot
+import androidx.compose.ui.layout.positionInRoot
+import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.unit.dp
 import com.artemissoftware.amphitriteui.showcase.models.ShowCaseInfo
+import com.artemissoftware.amphitriteui.util.SpotlightUtil.getOutCircleCenter
+import com.artemissoftware.amphitriteui.util.SpotlightUtil.getOuterRadius
+import kotlinx.coroutines.delay
 import kotlin.math.absoluteValue
 import kotlin.math.max
 
@@ -49,41 +59,33 @@ private fun TargetContent(
     onShowCaseCompleted: () -> Unit
 ) {
 
-//    val screenHeight = LocalConfiguration.current.screenHeightDp
+    val screenHeight = LocalConfiguration.current.screenHeightDp
     val targetCords = target.coordinate
     val targetRect = targetCords.boundsInRoot()
 
-//    val topArea = 88.dp
+    val topArea = 88.dp
 
     var textCoordinate: LayoutCoordinates? by remember { mutableStateOf(null) }
-//    val yOffset = with(LocalDensity.current) { targetCords.positionInRoot().y.toDp() }
+    val yOffset = with(LocalDensity.current) { targetCords.positionInRoot().y.toDp() }
     val maxDimension = max(targetCords.size.width.absoluteValue, targetCords.size.height.absoluteValue)
-    val targetRadius = maxDimension *1f/// 2f + 40f
-//    val animationSpec = infiniteRepeatable<Float>(
-//        animation = tween(2000, easing = FastOutLinearInEasing),
-//        repeatMode = RepeatMode.Restart
-//    )
+    val targetRadius = maxDimension / 2f + 40f
+
 
     var outerOffset by remember { mutableStateOf(Offset(0f, 0f)) }
-    var outerRadius by remember { mutableStateOf(0f + 1000f) }
+    var outerRadius by remember { mutableStateOf(0f) }
 
     textCoordinate?.let { textCoordinates ->
         val textRect = textCoordinates.boundsInRoot()
         val textHeight = textCoordinates.size.height
-//        val isInGutter = topArea > yOffset || yOffset > screenHeight.dp.minus(topArea)
-//
-//        outerOffset = getOutCircleCenter(
-//            targetRect, textRect, targetRadius, textHeight, isInGutter
-//        )
-//        outerRadius = getOuterRadius(textRect, targetRect) + targetRadius
-    }
-/*
-    val outerAnimatable = remember { Animatable(0.6f) }
+        val isInGutter = topArea > yOffset || yOffset > screenHeight.dp.minus(topArea)
 
-    val animatables = listOf(
-        remember { Animatable(0f) },
-        remember { Animatable(0f) }
-    )
+        outerOffset = getOutCircleCenter(targetRect, textRect, targetRadius, textHeight, isInGutter)
+        outerRadius = getOuterRadius(textRect, targetRect) + targetRadius
+    }
+
+
+
+    val outerAnimatable = remember { Animatable(0.6f) }
 
     LaunchedEffect(target) {
         outerAnimatable.snapTo(0.6f)
@@ -96,6 +98,18 @@ private fun TargetContent(
         )
     }
 
+
+
+    val animatables = listOf(
+        remember { Animatable(0f) },
+        //remember { Animatable(0f) }
+    )
+
+    val animationSpec = infiniteRepeatable<Float>(
+        animation = tween(durationMillis = 2000, easing = FastOutLinearInEasing),
+        repeatMode = RepeatMode.Restart
+    )
+
     animatables.forEachIndexed { index, animatable ->
         LaunchedEffect(animatable) {
             delay(index + 1000L)
@@ -106,26 +120,31 @@ private fun TargetContent(
         }
     }
 
-    val dys = animatables.map { it.value }
-    */
+    val ripples = animatables.map { it.value }
+
     Box {
 
         Spotlight(
             showCaseInfo = target,
             onShowCaseCompleted = onShowCaseCompleted,
-            targetRect = targetRect
+            targetRect = targetRect,
+            targetRadius = targetRadius,
+            backgroundColor = backgroundColor,
+            outerOffset = outerOffset,
+            outerRadius = outerRadius,
+            outerAnimatable = outerAnimatable,
+            ripples = ripples,
+            maxDimension = maxDimension
         )
 
         ShowCaseText(
             currentTarget = target,
             boundsInParent = targetRect,
-//            targetRadius = targetRadius,
+            targetRadius = targetRadius,
             onGloballyPositioned = {
                 textCoordinate = it
             }
         )
-
-
     }
 }
 
@@ -133,7 +152,14 @@ private fun TargetContent(
 private fun Spotlight(
     showCaseInfo: ShowCaseInfo,
     onShowCaseCompleted: () -> Unit,
-    targetRect: Rect
+    targetRect: Rect,
+    backgroundColor: Color,
+    outerOffset: Offset,
+    outerRadius: Float,
+    targetRadius: Float,
+    outerAnimatable: Animatable<Float, AnimationVector1D>,
+    ripples: List<Float>,
+    maxDimension: Int
 ) {
 
     Canvas(
@@ -146,29 +172,30 @@ private fun Spotlight(
                     }
                 }
             }
-//                .graphicsLayer(alpha = 0.99f)
+            .graphicsLayer(alpha = 0.99f)
     ) {
-//            drawCircle(
-//                color = backgroundColor,
-//                center = outerOffset,
-//                radius = outerRadius /** outerAnimatable.value*/,
-//                alpha = 0.9f
-//            )
-//            dys.forEach { dy ->
-//                drawCircle(
-//                    color = Color.White,
-//                    radius = maxDimension * dy * 2f,
-//                    center = targetRect.center,
-//                    alpha = 1 - dy
-//                )
-//            }
+            drawCircle(
+                color = backgroundColor,
+                center = outerOffset,
+                radius = outerRadius * outerAnimatable.value,
+                alpha = 0.9f
+            )
 
-//            drawCircle(
-//                color = Color.Transparent,
-//                radius = targetRadius,
-//                center = targetRect.center,
-//                blendMode = BlendMode.Clear
-//            )
+            ripples.forEach { ripple ->
+                drawCircle(
+                    color = Color.White,
+                    radius = maxDimension * ripple * 2f,
+                    center = targetRect.center,
+                    alpha = 1 - ripple
+                )
+            }
+
+            drawCircle(
+                color = Color.Transparent,
+                radius = targetRadius,
+                center = targetRect.center,
+                blendMode = BlendMode.Clear
+            )
     }
 }
 

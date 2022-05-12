@@ -1,26 +1,32 @@
 package com.artemissoftware.amphitriteui.showcase
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.Scaffold
-import androidx.compose.material.TopAppBar
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateMapOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.artemissoftware.amphitriteui.showcase.composables.ShowCaseText
+import com.artemissoftware.amphitriteui.showcase.composables.ShowCaseView
+import com.artemissoftware.amphitriteui.showcase.models.ShowCaseInfo
+import com.artemissoftware.amphitriteui.ui.theme.ThemeColor
 
 @Composable
 fun ShowCaseScreen() {
 
     val context = LocalContext.current
-    //val targets = remember { mutableStateMapOf<String, ShowCaseProperty>() }
+    val targets = remember { mutableStateMapOf<String, ShowCaseInfo>() }
 
     Box {
         Scaffold(
@@ -35,12 +41,12 @@ fun ShowCaseScreen() {
                             onClick = { /*TODO*/ },
                             modifier = Modifier
                                 .onGloballyPositioned { coordinates ->
-//                                    targets["back"] = ShowCaseProperty(
-//                                        4,
-//                                        coordinates,
-//                                        "Go back!",
-//                                        "You can go back by Clicking here!!!"
-//                                    )
+                                    targets["back"] = ShowCaseInfo(
+                                        index = 4,
+                                        coordinate = coordinates,
+                                        title = "Go back!",
+                                        subTitle ="You can go back by Clicking here!!!"
+                                    )
                                 }
                         ) {
                             Icon(
@@ -54,12 +60,12 @@ fun ShowCaseScreen() {
                             onClick = { /*TODO*/ },
                             modifier = Modifier
                                 .onGloballyPositioned { coordinates ->
-//                                    targets["search"] = ShowCaseProperty(
-//                                        3,
-//                                        coordinates,
-//                                        "Search anything!",
-//                                        "You can search anything by clicking here!!!"
-//                                    )
+                                    targets["search"] = ShowCaseInfo(
+                                        index = 3,
+                                        coordinate = coordinates,
+                                        title = "Search anything!",
+                                        subTitle ="You can search anything by clicking here!!!"
+                                    )
                                 }
                         ) {
                             Icon(
@@ -70,13 +76,13 @@ fun ShowCaseScreen() {
                     }
                 )
             },
-            /*
+
             floatingActionButton = {
                 FloatingActionButton(
                     onClick = { /*TODO*/ },
                     modifier = Modifier
                         .onGloballyPositioned { coordinates ->
-                            targets["email"] = ShowCaseProperty(
+                            targets["email"] = ShowCaseInfo(
                                 1,
                                 coordinates,
                                 "Check email",
@@ -93,7 +99,7 @@ fun ShowCaseScreen() {
                     )
                 }
             }
-        */
+
         ) {
             /*
             Box(
@@ -165,10 +171,19 @@ fun ShowCaseScreen() {
             */
         }
 
-        /*
-        ShowCaseView(targets = targets) {
-            Toast.makeText(context, "App Intro finished!", Toast.LENGTH_SHORT).show()
-        }
-        */
+
+        ShowCaseView(
+            targets = targets,
+            onShowCaseCompleted = {
+                Toast.makeText(context, "App Intro finished!", Toast.LENGTH_SHORT).show()
+            }
+        )
+
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun DefaultPreview() {
+    ShowCaseScreen()
 }

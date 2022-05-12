@@ -1,10 +1,17 @@
 package com.artemissoftware.amphitriteui.showcase.composables
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Rect
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.LayoutCoordinates
+import androidx.compose.ui.layout.onGloballyPositioned
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -14,28 +21,30 @@ import com.artemissoftware.amphitriteui.showcase.models.ShowCaseInfo
 @Composable
 fun ShowCaseText(
     currentTarget: ShowCaseInfo,
-//    boundsInParent: Rect,
+    boundsInParent: Rect,
 //    targetRadius: Float,
-//    onGloballyPositioned: (LayoutCoordinates) -> Unit
+    onGloballyPositioned: (LayoutCoordinates) -> Unit
 ) {
 
-    //var txtOffsetY by remember { mutableStateOf(0f) }
+    var txtOffsetY by remember { mutableStateOf(0f) }
 
     Column(
         modifier = Modifier
-//            .offset(y = with(LocalDensity.current) {
-//                txtOffsetY.toDp()
-//            })
-//            .onGloballyPositioned {
-//                onGloballyPositioned(it)
-//                val textHeight = it.size.height
-//                val possibleTop = boundsInParent.center.y - targetRadius - textHeight
-//                txtOffsetY = if (possibleTop > 0) {
-//                    possibleTop
-//                } else {
-//                    boundsInParent.center.y + targetRadius
-//                }
-//            }
+            .offset(y = with(LocalDensity.current) {
+                txtOffsetY.toDp()
+            })
+            .onGloballyPositioned {
+                onGloballyPositioned(it)
+                val textHeight = it.size.height
+                val possibleTop = boundsInParent.center.y /*- targetRadius*/ - textHeight
+
+                txtOffsetY = if (possibleTop > 0) {
+                    possibleTop
+                } else {
+                    boundsInParent.center.y //+ targetRadius
+                }
+            }
+            .background(color = Color.Magenta)
             .padding(16.dp)
     ) {
         Text(
@@ -54,11 +63,7 @@ fun ShowCaseText(
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-private fun DefaultPreview() {
-    ShowCaseText(currentTarget = ShowCaseInfo.getMock())
-}
+
 
 /*
 fun getOutCircleCenter(

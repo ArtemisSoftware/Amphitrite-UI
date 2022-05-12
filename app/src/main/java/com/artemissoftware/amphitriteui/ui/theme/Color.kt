@@ -12,3 +12,7 @@ val lightGray = Color(0xFFe2e2e2)
 
 val green = Color(0xff6FCF97)
 val red = Color(0xffEB5757)
+
+
+val WhiteSecondary = Color(0xFFF5F5F5)
+val ThemeColor = Color(0xFFFB709A)

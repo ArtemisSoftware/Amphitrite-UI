@@ -1,4 +1,4 @@
-package com.artemissoftware.amphitriteui.sound.composables
+package com.artemissoftware.amphitriteui.animation.sound.composables
 
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.background

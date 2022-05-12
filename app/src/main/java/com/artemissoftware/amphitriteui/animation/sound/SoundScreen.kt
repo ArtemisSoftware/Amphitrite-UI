@@ -1,4 +1,4 @@
-package com.artemissoftware.amphitriteui.sound
+package com.artemissoftware.amphitriteui.animation.sound
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
@@ -7,8 +7,8 @@ import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.artemissoftware.amphitriteui.sound.composables.Dots
-import com.artemissoftware.amphitriteui.sound.composables.Wave
+import com.artemissoftware.amphitriteui.animation.sound.composables.Dots
+import com.artemissoftware.amphitriteui.animation.sound.composables.Wave
 
 @Composable
 fun SoundScreen() {

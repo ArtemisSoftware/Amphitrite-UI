@@ -33,7 +33,7 @@ fun InfinitelyFlowingCircles() {
 }
 
 @Composable
-fun scaleInfiniteTransition(
+private fun scaleInfiniteTransition(
     initialValue: Float = 0f,
     targetValue: Float,
     durationMillis: Int
@@ -54,6 +54,7 @@ fun scaleInfiniteTransition(
 @Preview(showBackground = true)
 @Composable
 private fun DefaultPreview() {
-
-    InfinitelyFlowingCircles()
+    Column {
+        InfinitelyFlowingCircles()
+    }
 }

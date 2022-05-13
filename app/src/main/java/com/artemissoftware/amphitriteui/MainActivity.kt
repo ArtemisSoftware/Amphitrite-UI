@@ -17,6 +17,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.artemissoftware.amphitriteui.animation.searching.Searching
 import com.artemissoftware.amphitriteui.showcase.ShowCaseScreen
 import com.artemissoftware.amphitriteui.ui.theme.AmphitriteUITheme
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
@@ -51,15 +52,16 @@ class MainActivity : ComponentActivity() {
                     //TimeScreen()
                     //--CalendarScreen()
                     //RealTimeUpdateScreen()
-                    ShowCaseScreen()
+                    //ShowCaseScreen()
 
-//                    SingleContent{
-//
-//                        //ExoPlayer(url = VIDEO_URL)
-//                        //ScratchCard()
-//                        //SwipeButton()
-//                        //RatingBar()
-//                    }
+                    SingleContent{
+
+                        //ExoPlayer(url = VIDEO_URL)
+                        //ScratchCard()
+                        //SwipeButton()
+                        //RatingBar()
+                        Searching()
+                    }
 
 
                 }

@@ -44,7 +44,7 @@ private fun DefaultPreview() {
     Column {
         //Circle(scale = 0.1f, color = Color.Green, radiusRatio = 0.1f)
         //Circle(scale = 0.3f, color = Color.Red, radiusRatio = 0.3f)
-        Circle(scale = 0.1f, color = Color.Blue, radiusRatio = 0.1f)
+        Circle(scale = 0.8f, color = Color.Blue, radiusRatio = 16f)
     }
 
 

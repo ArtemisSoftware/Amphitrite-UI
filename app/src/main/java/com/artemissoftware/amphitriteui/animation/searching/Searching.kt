@@ -13,15 +13,19 @@ import com.artemissoftware.amphitriteui.animation.searching.composables.Infinite
 @Composable
 fun Searching() {
 
-    Box{
-    InfinitelyFlowingCircles()
     Box(
         modifier = Modifier
-            .fillMaxSize()
-            .padding(bottom = 28.dp, end = 28.dp),
+            .fillMaxSize(),
         contentAlignment = Alignment.Center
-    ) {
-        AnimateSearch()
-    }
+    ){
+        InfinitelyFlowingCircles()
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(bottom = 28.dp, end = 28.dp),
+            contentAlignment = Alignment.Center
+        ) {
+            AnimateSearch()
+        }
     }
 }

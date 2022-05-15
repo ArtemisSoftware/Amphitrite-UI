@@ -19,3 +19,4 @@ App to explore simple ui ideas
     -Real time update
     -Show case (with animation)
     -Search (with animation)
+    -Swipe to reveal

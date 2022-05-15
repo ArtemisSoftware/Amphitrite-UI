@@ -20,7 +20,7 @@ import com.artemissoftware.amphitriteui.R
 import com.artemissoftware.amphitriteui.ui.theme.AmphitriteUITheme
 
 @Composable
-fun SwipeCard() {
+fun SwipeCardContent() {
 
     Column(
         modifier = Modifier
@@ -66,5 +66,5 @@ fun SwipeCard() {
 @Preview(showBackground = true)
 @Composable
 private fun DefaultPreview() {
-    SwipeCard()
+    SwipeCardContent()
 }

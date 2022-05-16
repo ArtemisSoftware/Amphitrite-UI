@@ -17,3 +17,6 @@ val red = Color(0xffEB5757)
 
 val WhiteSecondary = Color(0xFFF5F5F5)
 val ThemeColor = Color(0xFFFB709A)
+
+val ForwardColor = Color(0xFFDF6589)
+val PreviousColor = Color(0xFF3C1053)

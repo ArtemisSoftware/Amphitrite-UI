@@ -13,6 +13,7 @@ import com.artemissoftware.amphitriteui.realtimelifecycleupdate.models.PriceFluc
 fun RealTimeLifecycleUpdateScreen() {
 
     val currencyPrices = CurrencyPrice.getMocks()//viewModel.currencyPrices.collectAsState()
+
     LazyColumn {
         itemsIndexed(currencyPrices/*.value*/, { _, item -> item.id }) { index, currencyPrice ->
             RealTimeLifecycleUpdatePriceCard(

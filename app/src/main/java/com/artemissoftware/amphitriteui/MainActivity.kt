@@ -17,6 +17,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.artemissoftware.amphitriteui.animation.flip.FlipCard
 import com.artemissoftware.amphitriteui.animation.searching.Searching
 import com.artemissoftware.amphitriteui.showcase.ShowCaseScreen
 import com.artemissoftware.amphitriteui.swipereveal.SwipeCard
@@ -62,7 +63,8 @@ class MainActivity : ComponentActivity() {
                         //SwipeButton()
                         //RatingBar()
                         //Searching()
-                        SwipeCard()
+                        //SwipeCard()
+                        FlipCard()
                     }
 
 

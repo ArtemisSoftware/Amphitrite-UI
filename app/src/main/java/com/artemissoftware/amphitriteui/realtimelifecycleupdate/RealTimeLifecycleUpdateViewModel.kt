@@ -5,8 +5,8 @@ import androidx.lifecycle.viewModelScope
 import com.artemissoftware.amphitriteui.realtimelifecycleupdate.models.CurrencyPrice
 import com.artemissoftware.amphitriteui.realtimelifecycleupdate.models.PriceFluctuation
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import java.util.*
 import kotlin.random.Random
@@ -45,32 +45,32 @@ class RealTimeLifecycleUpdateViewModel : ViewModel() {
         }
     }
 
-//    fun onCurrencyUpdated(newPrice: Int, index: Int) {
-//        val newFluctuation = when {
-//            newPrice > _currencyPrices.value[index].price -> PriceFluctuation.UP
-//            else -> PriceFluctuation.DOWN
-//        }
-//        val updatedCurrency =
-//            _currencyPrices.value[index].copy(price = newPrice, priceFluctuation = newFluctuation)
-//        val mutableCurrencies = _currencyPrices.value.toMutableList()
-//        mutableCurrencies[index] = updatedCurrency
-//        _currencyPrices.value = mutableCurrencies.toList()
-//    }
-//
-//    fun onDisposed(index: Int) {
-//        val updatedCurrency =
-//            _currencyPrices.value[index].copy(priceFluctuation = PriceFluctuation.UNKNOWN)
-//        val mutableCurrencies = _currencyPrices.value.toMutableList()
-//        mutableCurrencies[index] = updatedCurrency
-//        _currencyPrices.value = mutableCurrencies.toList()
-//    }
-//
-//    fun provideCurrencyUpdateFlow(): Flow<Int> {
-//        return flow {
-//            repeat(10000) {
-//                delay(Random.nextLong(500L, 2500L))
-//                emit(Random.nextInt(0, 100))
-//            }
-//        }.flowOn(Dispatchers.Default).distinctUntilChanged()
-//    }
+    fun onCurrencyUpdated(newPrice: Int, index: Int) {
+        val newFluctuation = when {
+            newPrice > _currencyPrices.value[index].price -> PriceFluctuation.UP
+            else -> PriceFluctuation.DOWN
+        }
+        val updatedCurrency =
+            _currencyPrices.value[index].copy(price = newPrice, priceFluctuation = newFluctuation)
+        val mutableCurrencies = _currencyPrices.value.toMutableList()
+        mutableCurrencies[index] = updatedCurrency
+        _currencyPrices.value = mutableCurrencies.toList()
+    }
+
+    fun onDisposed(index: Int) {
+        val updatedCurrency =
+            _currencyPrices.value[index].copy(priceFluctuation = PriceFluctuation.UNKNOWN)
+        val mutableCurrencies = _currencyPrices.value.toMutableList()
+        mutableCurrencies[index] = updatedCurrency
+        _currencyPrices.value = mutableCurrencies.toList()
+    }
+
+    fun provideCurrencyUpdateFlow(): Flow<Int> {
+        return flow {
+            repeat(10000) {
+                delay(Random.nextLong(500L, 2500L))
+                emit(Random.nextInt(0, 100))
+            }
+        }.flowOn(Dispatchers.Default).distinctUntilChanged()
+    }
 }

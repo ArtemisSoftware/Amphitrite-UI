@@ -7,6 +7,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import com.artemissoftware.amphitriteui.autocomplete.composables.CountryList
+import com.artemissoftware.amphitriteui.autocomplete.composables.SearchCountry
 
 @Composable
 fun CountryListScreen() {
@@ -14,7 +15,7 @@ fun CountryListScreen() {
     val textVal = remember { mutableStateOf(TextFieldValue("")) }
 
     Column {
-//        SearchCountryList(textVal)
+        SearchCountry(textVal)
         CountryList(textVal)
     }
 }

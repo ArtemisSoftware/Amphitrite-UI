@@ -19,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.artemissoftware.amphitriteui.animation.flip.FlipCard
 import com.artemissoftware.amphitriteui.animation.searching.Searching
+import com.artemissoftware.amphitriteui.autocomplete.CountryListScreen
 import com.artemissoftware.amphitriteui.realtimelifecycleupdate.RealTimeLifecycleUpdateScreen
 import com.artemissoftware.amphitriteui.showcase.ShowCaseScreen
 import com.artemissoftware.amphitriteui.swipereveal.SwipeCard
@@ -55,9 +56,9 @@ class MainActivity : ComponentActivity() {
                     //TimeScreen()
                     //--CalendarScreen()
                     //RealTimeUpdateScreen()
-                    RealTimeLifecycleUpdateScreen()
+                    //RealTimeLifecycleUpdateScreen()
                     //ShowCaseScreen()
-
+                    CountryListScreen()
 
                     SingleContent{
 

@@ -4,10 +4,7 @@ import android.widget.Toast
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.TextFieldValue
@@ -19,27 +16,33 @@ import kotlin.collections.ArrayList
 fun CountryList(textVal: MutableState<TextFieldValue>) {
 
     val context = LocalContext.current
-    val countries = getListOfCountries()
-    var filteredCountries: ArrayList<String>
+
+    val countries = remember { getListOfCountries() }
+    var filteredCountries = remember { mutableStateOf(emptyList<String>()) }
 
     val searchText = textVal.value.text
-    filteredCountries = if (searchText.isEmpty()) {
-        countries
-    } else {
-        val resultList = ArrayList<String>()
-        for (country in countries) {
-            if (country.lowercase(Locale.getDefault()).contains(searchText.lowercase(Locale.getDefault()))) {
-                resultList.add(country)
+
+    LaunchedEffect(key1 = searchText){
+
+        filteredCountries.value = if (searchText.isEmpty()) {
+            countries.toMutableList()
+        } else {
+            val resultList = ArrayList<String>()
+            for (country in countries) {
+                if (country.lowercase(Locale.getDefault()).contains(searchText.lowercase(Locale.getDefault()))) {
+                    resultList.add(country)
+                }
             }
+            resultList.toMutableList()
         }
-        resultList
+
     }
 
     LazyColumn(
         modifier = Modifier.fillMaxWidth()
     ) {
 
-        items(filteredCountries) { filteredCountries ->
+        items(filteredCountries.value) { filteredCountries ->
             CountryListItem(
                 countryText = filteredCountries,
                 onItemClick = { selectedCountry ->
@@ -50,7 +53,7 @@ fun CountryList(textVal: MutableState<TextFieldValue>) {
     }
 }
 
-fun getListOfCountries(): ArrayList<String> {
+fun getListOfCountries(): List<String> {
     
     val isoCountryCodes = Locale.getISOCountries()
     val countryListWithEmojis = ArrayList<String>()

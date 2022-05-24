@@ -50,7 +50,6 @@ fun CountryList(textVal: MutableState<TextFieldValue>) {
     }
 }
 
-@Composable
 fun getListOfCountries(): ArrayList<String> {
     
     val isoCountryCodes = Locale.getISOCountries()
@@ -74,6 +73,5 @@ fun getListOfCountries(): ArrayList<String> {
 private fun DefaultPreview() {
 
     val textVal = remember { mutableStateOf(TextFieldValue("Angola")) }
-
     CountryList(textVal = textVal)
 }

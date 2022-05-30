@@ -20,3 +20,5 @@ App to explore simple ui ideas
     -Show case (with animation)
     -Search (with animation)
     -Swipe to reveal
+    -Auto complete
+    -SpeedoMeter

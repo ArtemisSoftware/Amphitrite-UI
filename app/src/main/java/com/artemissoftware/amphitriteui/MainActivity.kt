@@ -22,6 +22,7 @@ import com.artemissoftware.amphitriteui.animation.searching.Searching
 import com.artemissoftware.amphitriteui.autocomplete.CountryListScreen
 import com.artemissoftware.amphitriteui.realtimelifecycleupdate.RealTimeLifecycleUpdateScreen
 import com.artemissoftware.amphitriteui.showcase.ShowCaseScreen
+import com.artemissoftware.amphitriteui.speedometer.SpeedoMeterScreen
 import com.artemissoftware.amphitriteui.swipereveal.SwipeCard
 import com.artemissoftware.amphitriteui.ui.theme.AmphitriteUITheme
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
@@ -58,7 +59,8 @@ class MainActivity : ComponentActivity() {
                     //RealTimeUpdateScreen()
                     //RealTimeLifecycleUpdateScreen()
                     //ShowCaseScreen()
-                    CountryListScreen()
+                    //CountryListScreen()
+                    SpeedoMeterScreen()
 
                     SingleContent{
 

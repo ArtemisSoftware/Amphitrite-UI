@@ -22,3 +22,4 @@ App to explore simple ui ideas
     -Swipe to reveal
     -Auto complete
     -SpeedoMeter
+    -Barcode Generator

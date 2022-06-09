@@ -13,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -22,33 +23,33 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import com.artemissoftware.amphitriteui.R
 import com.artemissoftware.amphitriteui.animation.automaticslider.models.GodPicture
+import androidx.compose.ui.util.lerp
+import com.google.accompanist.pager.calculateCurrentOffsetForPage
 
 @Composable
-fun PictureCard(godPicture: GodPicture) {
+fun PictureCard(modifier: Modifier = Modifier, godPicture: GodPicture, pageOffset: Float) {
 
     Card(
         modifier = Modifier
-//            .graphicsLayer {
-//                val pageOffset = calculateCurrentOffsetForPage(page).absoluteValue
-//                lerp(
-//                    start = 0.85f,
-//                    stop = 1f,
-//                    fraction = 1f - pageOffset.coerceIn(0f, 1f)
-//                ).also { scale ->
-//                    scaleX = scale
-//                    scaleY = scale
-//                }
-//            }
+            .graphicsLayer {
+                lerp(
+                    start = 0.85f,
+                    stop = 1f,
+                    fraction = 1f - pageOffset.coerceIn(0f, 1f)
+                ).also { scale ->
+                    scaleX = scale
+                    scaleY = scale
+                }
+            }
             .fillMaxWidth()
             .padding(15.dp, 0.dp, 15.dp, 0.dp),
         shape = RoundedCornerShape(20.dp)
     ) {
 
         Box(
-            modifier = Modifier
+            modifier = modifier
                 .fillMaxSize()
                 .background(Color.LightGray)
-                //.align(Alignment.Center)
         ) {
             Image(
                 painter = painterResource(id = godPicture.img),
@@ -99,5 +100,5 @@ fun PictureCard(godPicture: GodPicture) {
 @Preview(showBackground = true)
 @Composable
 private fun DefaultPreview() {
-    PictureCard(GodPicture.mockList[0])
+    PictureCard(godPicture = GodPicture.mockList[0], pageOffset = 0F)
 }

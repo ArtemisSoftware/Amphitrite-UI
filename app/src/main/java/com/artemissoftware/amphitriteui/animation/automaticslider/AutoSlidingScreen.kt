@@ -12,12 +12,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.artemissoftware.amphitriteui.animation.automaticslider.composables.PictureCard
 import com.artemissoftware.amphitriteui.animation.automaticslider.models.GodPicture
-import com.google.accompanist.pager.ExperimentalPagerApi
-import com.google.accompanist.pager.HorizontalPager
-import com.google.accompanist.pager.HorizontalPagerIndicator
-import com.google.accompanist.pager.rememberPagerState
+import com.google.accompanist.pager.*
 import kotlinx.coroutines.delay
 import java.lang.Thread.yield
+import kotlin.math.absoluteValue
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
@@ -49,8 +47,8 @@ fun AutoSlidingScreen() {
                 .weight(1f)
                 .padding(0.dp, 40.dp, 0.dp, 40.dp)
         ) { page ->
-            
-            PictureCard(godPicture = GodPicture.mockList[page])
+            val pageOffset = calculateCurrentOffsetForPage(page).absoluteValue
+            PictureCard(modifier = Modifier.align(Alignment.Center), godPicture = GodPicture.mockList[page], pageOffset)
         }
 
         //Horizontal dot indicator

@@ -18,6 +18,7 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.artemissoftware.amphitriteui.animation.flip.FlipCard
+import com.artemissoftware.amphitriteui.animation.scaling.ScalingScreen
 import com.artemissoftware.amphitriteui.animation.searching.Searching
 import com.artemissoftware.amphitriteui.autocomplete.CountryListScreen
 import com.artemissoftware.amphitriteui.barcode.GenerateBarCodeScreen
@@ -62,7 +63,8 @@ class MainActivity : ComponentActivity() {
                     //ShowCaseScreen()
                     //CountryListScreen()
                     //SpeedoMeterScreen()
-                    GenerateBarCodeScreen()
+                    //GenerateBarCodeScreen()
+                    ScalingScreen()
 
                     SingleContent{
 

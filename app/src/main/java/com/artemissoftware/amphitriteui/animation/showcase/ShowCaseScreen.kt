@@ -1,4 +1,4 @@
-package com.artemissoftware.amphitriteui.showcase
+package com.artemissoftware.amphitriteui.animation.showcase
 
 import android.widget.Toast
 import androidx.compose.foundation.Image
@@ -25,8 +25,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.artemissoftware.amphitriteui.R
-import com.artemissoftware.amphitriteui.showcase.composables.ShowCaseView
-import com.artemissoftware.amphitriteui.showcase.models.ShowCaseInfo
+import com.artemissoftware.amphitriteui.animation.showcase.composables.ShowCaseView
+import com.artemissoftware.amphitriteui.animation.showcase.models.ShowCaseInfo
 import com.artemissoftware.amphitriteui.ui.theme.ThemeColor
 
 @Composable

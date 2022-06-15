@@ -1,4 +1,4 @@
-package com.artemissoftware.amphitriteui.showcase.composables
+package com.artemissoftware.amphitriteui.animation.showcase.composables
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.offset
@@ -13,7 +13,7 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.artemissoftware.amphitriteui.showcase.models.ShowCaseInfo
+import com.artemissoftware.amphitriteui.animation.showcase.models.ShowCaseInfo
 
 @Composable
 fun ShowCaseText(

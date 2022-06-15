@@ -1,4 +1,4 @@
-package com.artemissoftware.amphitriteui.showcase.composables
+package com.artemissoftware.amphitriteui.animation.showcase.composables
 
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.Canvas
@@ -20,7 +20,7 @@ import androidx.compose.ui.layout.positionInRoot
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
-import com.artemissoftware.amphitriteui.showcase.models.ShowCaseInfo
+import com.artemissoftware.amphitriteui.animation.showcase.models.ShowCaseInfo
 import com.artemissoftware.amphitriteui.util.SpotlightUtil.getOutCircleCenter
 import com.artemissoftware.amphitriteui.util.SpotlightUtil.getOuterRadius
 import kotlinx.coroutines.delay

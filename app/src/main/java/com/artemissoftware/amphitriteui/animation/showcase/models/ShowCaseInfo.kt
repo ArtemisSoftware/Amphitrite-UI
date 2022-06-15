@@ -1,4 +1,4 @@
-package com.artemissoftware.amphitriteui.showcase.models
+package com.artemissoftware.amphitriteui.animation.showcase.models
 
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.LayoutCoordinates

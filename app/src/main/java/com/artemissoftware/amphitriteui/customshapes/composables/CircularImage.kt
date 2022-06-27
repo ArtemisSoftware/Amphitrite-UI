@@ -69,6 +69,4 @@ private fun DefaultPreview() {
         CircularImage()
         CircularImage_v2()
     }
-
-
 }

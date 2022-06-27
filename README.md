@@ -27,3 +27,6 @@ App to explore simple ui ideas
     -Auto complete
     -Barcode Generator
     -SpeedoMeter
+    -Custom shapes
+        - Circular image
+        - Heart

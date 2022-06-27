@@ -69,7 +69,7 @@ class MainActivity : ComponentActivity() {
                         //Searching()
                         //SwipeCard()
                         //FlipCard()
-                        FavoriteButton()
+                        //FavoriteButton()
                     }
 
 

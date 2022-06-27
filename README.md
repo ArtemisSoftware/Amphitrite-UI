@@ -9,7 +9,7 @@ App to explore simple ui ideas
         -Show case 
         -Search 
 
-        -Favorite Button
+        -Favorite Button -----------(incomplete)
 
     -Scratch card
     -Swipebutton
@@ -21,7 +21,7 @@ App to explore simple ui ideas
     -Pagination
     -Multi-language
     -Time and date Pickers
-    -Calendar
+    -Calendar -----------(incomplete)
     -Real time update
     -Swipe to reveal
     -Auto complete

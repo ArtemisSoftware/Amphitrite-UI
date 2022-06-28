@@ -25,18 +25,17 @@ import com.artemissoftware.amphitriteui.customshapes.extensions.heartPath
 @Composable
 fun FlyingHeart(
     modifier: Modifier = Modifier,
-//    horizontalPadding: Int,
+    horizontalPadding: Int,
     bottomMargin: Int
 ) {
 
-
     val state = remember { mutableStateOf(HeartState.Show) }
 
-//    val width = LocalConfiguration.current.screenWidthDp
+    val width = LocalConfiguration.current.screenWidthDp
     val height = LocalConfiguration.current.screenHeightDp - bottomMargin
 
     val yRandom =  (0.. height / 2).random()
-//    val xRandom = Random.nextInt(horizontalPadding, (width - horizontalPadding))
+    val xRandom = (horizontalPadding.. (width - horizontalPadding)).random()
 
 
     val offsetYAnimation: Dp by animateDpAsState(
@@ -47,13 +46,13 @@ fun FlyingHeart(
         animationSpec = tween(1000)
     )
 
-//    val offsetXAnimation: Dp by animateDpAsState(
-//        targetValue = when (state.value) {
-//            HeartState.Show -> (((width - (horizontalPadding * 2)) / 2) + 8).dp
-//            else -> xRandom.dp
-//        },
-//        animationSpec = tween(1000)
-//    )
+    val offsetXAnimation: Dp by animateDpAsState(
+        targetValue = when (state.value) {
+            HeartState.Show -> (((width - (horizontalPadding * 2)) / 2) + 8).dp
+            else -> xRandom.dp
+        },
+        animationSpec = tween(1000)
+    )
 
     LaunchedEffect(key1 = state, block = {
         state.value = when (state.value) {
@@ -68,7 +67,7 @@ fun FlyingHeart(
         exit = fadeOut(animationSpec = tween(durationMillis = 700))
     ) {
         Canvas(modifier = modifier
-            .offset(y = offsetYAnimation, x = /*offsetXAnimation*/0.dp),
+            .offset(y = offsetYAnimation, x = offsetXAnimation),
             onDraw = {
                 val path = Path().apply {
                     heartPath(Size(120f, 120f))
@@ -82,45 +81,6 @@ fun FlyingHeart(
     }
 }
 
-@Composable
-private fun NewHeart() {
-
-    Canvas(modifier = Modifier
-        /*.offset(y = offsetYAnimation, x = offsetXAnimation)*/,
-        onDraw = {
-            val path = Path().apply {
-                heartPath(Size(120f, 120f))
-            }
-            drawPath(
-                path = path,
-                color = Color.Red,
-            )
-        }
-    )
-
-//    val instaColors = listOf(Color.Yellow, Color.Red, Color.Magenta)
-//    Canvas(
-//        modifier = Modifier
-//            .size(100.dp)
-//            .padding(16.dp)
-//    ) {
-//        drawRoundRect(
-//            brush = Brush.linearGradient(colors = instaColors),
-//            cornerRadius = CornerRadius(60f, 60f),
-//            style = Stroke(width = 15f, cap = StrokeCap.Round)
-//        )
-//        drawCircle(
-//            brush = Brush.linearGradient(colors = instaColors),
-//            radius = 45f,
-//            style = Stroke(width = 15f, cap = StrokeCap.Round)
-//        )
-//        drawCircle(
-//            brush = Brush.linearGradient(colors = instaColors),
-//            radius = 13f,
-//            center = Offset(this.size.width * .80f, this.size.height * 0.20f),
-//        )
-//    }
-}
 
 
 @Preview(showBackground = true)
@@ -130,6 +90,7 @@ private fun DefaultPreview() {
     FlyingHeart(
         modifier = Modifier
             .fillMaxSize(),
+        horizontalPadding = 24,
         bottomMargin = 110
     )
 }

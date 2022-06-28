@@ -8,7 +8,7 @@ App to explore simple ui ideas
         -BottomCollapse + floatingbuttonsCollapse
         -Show case 
         -Search 
-
+        -FlyingHearts ---------(needs more logic for multiple hearts)
         -Favorite Button -----------(incomplete)
 
     -Scratch card

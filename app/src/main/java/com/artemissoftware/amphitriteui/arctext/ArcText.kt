@@ -20,8 +20,12 @@ import androidx.compose.ui.unit.dp
 
 import android.graphics.RectF
 import androidx.compose.ui.geometry.Rect
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.min
 import com.artemissoftware.amphitriteui.R
+import kotlin.math.min
 
 @Composable
 fun ArcText(text: String) {
@@ -29,12 +33,12 @@ fun ArcText(text: String) {
     val paint = Paint().asFrameworkPaint()
     Box(
         modifier = Modifier
-            .fillMaxSize()
+            .fillMaxWidth()
             .padding(start = 50.dp)
     ) {
         Canvas(
             modifier = Modifier
-                .fillMaxSize()
+                .fillMaxWidth()
                 .padding(start = 50.dp)
         ) {
             paint.apply {
@@ -46,7 +50,14 @@ fun ArcText(text: String) {
             drawIntoCanvas {
                 val path = Path()
                 path.addArc(RectF(0f, 250f, 500f, 750f), 180f, 180f)
-                it.nativeCanvas.drawTextOnPath(text, path, 0f, 0f, paint)
+
+                it.nativeCanvas.drawTextOnPath(
+                    text,
+                    path,
+                    0f,
+                    0f,
+                    paint
+                )
             }
         }
 
@@ -60,9 +71,16 @@ fun ArcText(text: String) {
     }
 }
 
+
+
 @Preview(showBackground = true)
 @Composable
 private fun DefaultPreview() {
 
-    ArcText(text = "Artemis is hunting all alone")
+    Column(
+        verticalArrangement = Arrangement.spacedBy(24.dp)
+    ) {
+
+        ArcText(text = "Artemis is hunting all alone")
+    }
 }

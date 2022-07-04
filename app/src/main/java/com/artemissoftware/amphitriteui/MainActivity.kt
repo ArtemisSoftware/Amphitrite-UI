@@ -60,9 +60,10 @@ class MainActivity : ComponentActivity() {
                     //GenerateBarCodeScreen()
                     //ScalingScreen()
                     //AutoSlidingScreen()
-                    FlyingHeartScreen()
+                    //FlyingHeartScreen()
 
                     SingleContent{
+
 
                         //ExoPlayer(url = VIDEO_URL)
                         //ScratchCard()

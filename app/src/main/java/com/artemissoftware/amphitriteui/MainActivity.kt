@@ -20,6 +20,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.artemissoftware.amphitriteui.animation.automaticslider.AutoSlidingScreen
 import com.artemissoftware.amphitriteui.animation.favorite.composables.FavoriteButton
 import com.artemissoftware.amphitriteui.animation.flyinghearts.FlyingHeartScreen
+import com.artemissoftware.amphitriteui.animation.trianglespin.TriangleSpinIndicator
 import com.artemissoftware.amphitriteui.ui.theme.AmphitriteUITheme
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import dagger.hilt.android.AndroidEntryPoint
@@ -64,7 +65,7 @@ class MainActivity : ComponentActivity() {
 
                     SingleContent{
 
-
+                        TriangleSpinIndicator()
                         //ExoPlayer(url = VIDEO_URL)
                         //ScratchCard()
                         //SwipeButton()

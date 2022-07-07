@@ -1,4 +1,4 @@
-package com.artemissoftware.amphitriteui.animation.vynil.composables
+package com.artemissoftware.amphitriteui.animation.vynilplayer.composables
 
 import androidx.compose.foundation.clickable
 import androidx.compose.material.Icon

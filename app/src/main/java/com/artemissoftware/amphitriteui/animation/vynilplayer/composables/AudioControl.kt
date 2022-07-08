@@ -1,6 +1,7 @@
 package com.artemissoftware.amphitriteui.animation.vynilplayer.composables
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.icons.Icons
@@ -8,6 +9,7 @@ import androidx.compose.material.icons.filled.Pause
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 
@@ -23,7 +25,7 @@ fun AudioControl(
         contentDescription = "",
         tint = tint,
         modifier = modifier
-//            .clip(CircleShape)
+            .clip(CircleShape)
             .clickable(onClick = clickTogglePlayPause)
     )
 }
@@ -32,5 +34,5 @@ fun AudioControl(
 @Composable
 private fun DefaultPreview() {
 
-    AudioControl(clickTogglePlayPause = {})
+    AudioControl(clickTogglePlayPause = {}, tint = Color.Red)
 }

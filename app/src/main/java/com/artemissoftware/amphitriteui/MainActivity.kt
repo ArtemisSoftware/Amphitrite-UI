@@ -18,6 +18,7 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.artemissoftware.amphitriteui.animation.automaticslider.AutoSlidingScreen
+import com.artemissoftware.amphitriteui.animation.clock.composables.ClockScreen
 import com.artemissoftware.amphitriteui.animation.favorite.composables.FavoriteButton
 import com.artemissoftware.amphitriteui.animation.flyinghearts.FlyingHeartScreen
 import com.artemissoftware.amphitriteui.animation.trianglespin.TriangleSpinIndicator
@@ -63,10 +64,11 @@ class MainActivity : ComponentActivity() {
                     //ScalingScreen()
                     //AutoSlidingScreen()
                     //FlyingHeartScreen()
+                    ClockScreen()
 
                     SingleContent{
 
-                        VynilPlayer()
+                        //VynilPlayer()
                         //TriangleSpinIndicator()
                         //ExoPlayer(url = VIDEO_URL)
                         //ScratchCard()

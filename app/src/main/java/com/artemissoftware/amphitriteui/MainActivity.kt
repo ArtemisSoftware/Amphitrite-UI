@@ -64,12 +64,12 @@ class MainActivity : ComponentActivity() {
                     //ScalingScreen()
                     //AutoSlidingScreen()
                     //FlyingHeartScreen()
-                    ClockScreen()
+                    //ClockScreen()
 
                     SingleContent{
 
                         //VynilPlayer()
-                        //TriangleSpinIndicator()
+                        TriangleSpinIndicator()
                         //ExoPlayer(url = VIDEO_URL)
                         //ScratchCard()
                         //SwipeButton()
